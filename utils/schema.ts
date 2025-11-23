@@ -49,3 +49,32 @@ export const generateBreadcrumbSchema = (items: { name: string; item: string }[]
     }))
   }
 }
+
+export const generateProjectSchema = (project: any) => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.title,
+    description: project.description,
+    programmingLanguage: project.techStack,
+    codeRepository: project.links.github,
+    author: {
+      '@type': 'Person',
+      name: personalInfo.name
+    }
+  }
+}
+
+export const generateCollectionPageSchema = (title: string, description: string) => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description: description,
+    url: 'https://maximedev.fr/projects',
+    author: {
+      '@type': 'Person',
+      name: personalInfo.name
+    }
+  }
+}

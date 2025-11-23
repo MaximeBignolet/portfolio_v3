@@ -6,12 +6,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     '@nuxt/icon',
-    '@vueuse/motion/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/fontaine',
+    '@nuxt/eslint'
   ],
-  css: ['~/assets/css/main.scss'],
+  css: ['~/assets/css/main.css'],
   app: {
     head: {
       htmlAttrs: {
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   tailwindcss: {
-    cssPath: '~/assets/css/main.scss',
+    cssPath: '~/assets/css/main.css',
     configPath: 'tailwind.config.ts',
     exposeConfig: false,
     viewer: true,

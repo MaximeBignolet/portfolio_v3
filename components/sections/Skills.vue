@@ -5,11 +5,11 @@ const categories = ['Frontend Development', 'Development Tools', 'Backend & Arch
 </script>
 
 <template>
-  <UiSection id="skills" title="Skills & Technologies" subtitle="The tools I use to build digital products" dark>
+  <UiSection id="skills" title="Skills" subtitle="Technologies I work with">
     <div class="grid gap-12">
-      <div v-for="category in categories" :key="category" v-motion-slide-visible-once-bottom>
+      <div v-for="category in categories" :key="category" v-animate-on-scroll>
         <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
-          <span class="w-8 h-1 bg-primary-500 rounded-full" aria-hidden="true"></span>
+          <span class="w-8 h-1 bg-primary-500 rounded-full" aria-hidden="true"/>
           {{ category }}
         </h3>
         
@@ -27,7 +27,7 @@ const categories = ['Frontend Development', 'Development Tools', 'Backend & Arch
             
             <!-- Optional Level Indicator -->
             <div v-if="skill.level" class="absolute bottom-0 left-0 h-1 bg-primary-500/20 w-full rounded-b-xl overflow-hidden" role="progressbar" :aria-valuenow="skill.level" aria-valuemin="0" aria-valuemax="5" :aria-label="`Skill level: ${skill.level} out of 5`">
-              <div class="h-full bg-primary-500 transition-all duration-500" :style="{ width: `${(skill.level / 5) * 100}%` }"></div>
+              <div class="h-full bg-primary-500 transition-all duration-500" :style="{ width: `${(skill.level / 5) * 100}%` }"/>
             </div>
           </li>
         </ul>

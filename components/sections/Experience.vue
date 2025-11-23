@@ -8,12 +8,12 @@ import { experience } from '~/data/experience'
       <div 
         v-for="(job, index) in experience" 
         :key="index" 
-        class="relative pl-8 md:pl-12"
-        v-motion-slide-visible-once-bottom
-        :delay="index * 100"
+        class="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 pb-12 last:pb-0"
+        v-animate-on-scroll
+        :style="{ transitionDelay: `${index * 100}ms` }"
       >
         <!-- Timeline Dot -->
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-4 border-primary-500"></div>
+        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-4 border-primary-500"/>
         
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ job.title }}</h3>

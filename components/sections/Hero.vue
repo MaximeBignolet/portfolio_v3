@@ -5,17 +5,17 @@ import { personalInfo } from '~/data/links'
 <template>
   <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
     <!-- Background Elements -->
-    <div class="absolute inset-0 z-0 pointer-events-none">
-      <div class="absolute top-20 right-10 w-96 h-96 bg-primary-200/20 dark:bg-primary-900/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-20 left-10 w-72 h-72 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-20 right-10 w-96 h-96 bg-primary-200/20 dark:bg-primary-900/10 rounded-full blur-3xl animate-pulse will-change-transform"/>
+      <div class="absolute bottom-20 left-10 w-72 h-72 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl animate-pulse delay-1000 will-change-transform"/>
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div v-motion-slide-visible-once-bottom class="space-y-6">
+      <div v-animate-on-scroll class="space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium text-slate-600 dark:text-slate-300 mb-4">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"/>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"/>
           </span>
           Available for work
         </div>

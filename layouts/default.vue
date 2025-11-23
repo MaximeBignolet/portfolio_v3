@@ -68,9 +68,9 @@ const navigation = [
           </NuxtLink>
           
           <button
-            @click="toggleTheme"
             class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
             aria-label="Toggle theme"
+            @click="toggleTheme"
           >
             <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
             <Icon v-else name="ph:moon-bold" class="w-5 h-5" />
@@ -80,17 +80,17 @@ const navigation = [
         <!-- Mobile Menu Button -->
         <div class="flex items-center gap-4 md:hidden">
           <button
-            @click="toggleTheme"
             class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
+            @click="toggleTheme"
           >
             <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
             <Icon v-else name="ph:moon-bold" class="w-5 h-5" />
           </button>
           
           <button
-            @click="isMobileMenuOpen = !isMobileMenuOpen"
             class="p-2 -mr-2 text-slate-600 dark:text-slate-300"
             aria-label="Menu"
+            @click="isMobileMenuOpen = !isMobileMenuOpen"
           >
             <Icon v-if="isMobileMenuOpen" name="ph:x-bold" class="w-6 h-6" />
             <Icon v-else name="ph:list-bold" class="w-6 h-6" />

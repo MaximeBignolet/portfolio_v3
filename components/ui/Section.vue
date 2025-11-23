@@ -14,7 +14,7 @@ defineProps<{
     :class="dark ? 'bg-slate-900 text-white' : ''"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div v-if="title" class="mb-12 md:mb-20 max-w-3xl" v-motion-slide-visible-once-bottom>
+      <div v-if="title" v-motion-slide-visible-once-bottom class="mb-12 md:mb-20 max-w-3xl">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
           {{ title }}
         </h2>

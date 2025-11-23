@@ -11,9 +11,9 @@ export const personalInfo = {
   title: 'Nuxt.js & Frontend Developer — TypeScript / Vue.js',
   location: 'La Rochelle, France',
   shortBio: 'I build high-performance, SEO-optimized web applications using Nuxt 3 and the Vue.js ecosystem.',
-  about: `My name is Maxime Bignolet, a passionate Frontend Developer based in La Rochelle, France. I specialize in building modern, scalable web applications using Nuxt.js, Vue.js, and TypeScript.
+  about: `I am a <strong>Frontend Developer</strong> specialized in building high-performance web applications with <strong>Nuxt.js</strong>, <strong>TypeScript</strong>, and <strong>TailwindCSS</strong>. Based in La Rochelle, France, I combine technical expertise with a product-driven mindset to deliver scalable, SEO-optimized solutions.
 
-With a background in project management, I bring a unique perspective to development—focusing not just on code quality, but on delivering tangible business value. I am deeply committed to web performance, accessibility, and clean architecture.
+Currently a <strong>Frontend Engineer</strong> at a digital agency, I architect complex interfaces for major clients (e.g., Daikin), focusing on <strong>Core Web Vitals</strong>, accessibility, and maintainable codebases. I have successfully reduced load times by 40% and implemented robust design systems that streamline development.
 
-Currently, I work as a Frontend Engineer at a leading digital marketing agency, where I develop complex interfaces for major clients like Daikin. My expertise lies in the Vue.js ecosystem (Nuxt 3, Pinia, Vite) and modern CSS frameworks like TailwindCSS. I am constantly exploring new technologies to stay at the forefront of frontend development.`
+My core value lies in solving business problems through clean, type-safe code. Whether it's optimizing hydration strategies in Nuxt or crafting pixel-perfect UI with Tailwind, I ensure every line of code contributes to a superior user experience and measurable business growth.`
 }

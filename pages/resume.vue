@@ -3,10 +3,23 @@ import { experience } from '~/data/experience'
 import { skills } from '~/data/skills'
 import { personalInfo, links } from '~/data/links'
 
+import { generateBreadcrumbSchema } from '~/utils/schema'
+
 useHead({
   title: 'Resume | Maxime Bignolet',
   meta: [
     { name: 'description', content: 'Professional resume of Maxime Bignolet.' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify([
+        generateBreadcrumbSchema([
+          { name: 'Home', item: '/' },
+          { name: 'Resume', item: '/resume' }
+        ])
+      ])
+    }
   ]
 })
 
@@ -21,7 +34,7 @@ const printResume = () => {
       
       <!-- Actions -->
       <div class="flex justify-end mb-8 print:hidden">
-        <UiButton @click="printResume" variant="outline">
+        <UiButton variant="outline" @click="printResume">
           <Icon name="ph:printer-bold" class="w-5 h-5 mr-2" />
           Print / Save PDF
         </UiButton>

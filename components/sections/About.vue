@@ -5,9 +5,9 @@ import { personalInfo } from '~/data/links'
 <template>
   <UiSection id="about" title="About Me" subtitle="My journey into web development">
     <div class=" gap-12 items-center">
-      <div v-motion-slide-visible-once-left>
+      <div v-animate-on-scroll>
         <div class="prose dark:prose-invert max-w-none text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          <p class="whitespace-pre-line">{{ personalInfo.about }}</p>
+          <p class="whitespace-pre-line" v-html="personalInfo.about"/>
         </div>
         <div class="mt-8 grid grid-cols-2 gap-4">
           <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">

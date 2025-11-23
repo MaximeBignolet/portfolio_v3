@@ -3,12 +3,9 @@ import { links } from '~/data/links'
 </script>
 
 <template>
-  <UiSection id="contact" title="Get In Touch" subtitle="Let's build something amazing together" dark>
-    <div class="max-w-4xl mx-auto bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-700 text-center" v-motion-slide-visible-once-bottom>
-      <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">
-        Have a project in mind?
-      </h3>
-      <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
+  <UiSection id="contact" title="Contact" subtitle="Let's work together">
+    <div class="max-w-xl mx-auto text-center" v-animate-on-scroll>
+      <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
         I’m always open to new opportunities, collaborations, or simply a chat about all things web development.
       </p>
       

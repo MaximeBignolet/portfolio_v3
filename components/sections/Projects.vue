@@ -12,23 +12,26 @@ const displayedProjects = projects.slice(0, 4)
         v-for="(project, index) in displayedProjects" 
         :key="index"
         hover
-        v-motion-slide-visible-once-bottom
-        :delay="index * 100"
+        v-animate-on-scroll
+        :style="{ transitionDelay: `${index * 100}ms` }"
         as="article"
       >
         <div class="group relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
-          <!-- Image Placeholder or Actual Image -->
-          <div class="absolute inset-0 flex items-center justify-center text-slate-300 dark:text-slate-600 bg-slate-100 dark:bg-slate-800">
-             <Icon name="ph:image" class="w-12 h-12" aria-hidden="true" />
-          </div>
-          <!-- <NuxtImg 
+          <NuxtImg 
+            v-if="project.image"
             :src="project.image" 
             :alt="`Screenshot of ${project.title}`" 
             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             width="600"
             height="338"
-          /> -->
+            sizes="100vw sm:50vw md:400px"
+            format="webp"
+            placeholder
+          />
+          <div v-else class="absolute inset-0 flex items-center justify-center text-slate-300 dark:text-slate-600 bg-slate-100 dark:bg-slate-800">
+             <Icon name="ph:image" class="w-12 h-12" aria-hidden="true" />
+          </div>
           
           <!-- Overlay -->
           <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
