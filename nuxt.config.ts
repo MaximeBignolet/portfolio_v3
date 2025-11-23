@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
     '@nuxt/eslint'
   ],
+  ssr: false,
   css: ['~/assets/css/main.css'],
   app: {
     head: {
@@ -28,7 +29,7 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'canonical', href: 'https://maximedev.fr' }
       ]
     },

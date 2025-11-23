@@ -53,7 +53,7 @@ const navigation = [
     >
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <NuxtLink to="/" class="text-xl font-bold tracking-tighter hover:text-primary-500 transition-colors">
-          MB.
+          MB
         </NuxtLink>
 
         <!-- Desktop Nav -->
