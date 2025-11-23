@@ -21,12 +21,12 @@ import { links } from '~/data/links'
         </UiButton>
       </div>
       
-      <div class="mt-12 pt-8 border-t border-slate-700 flex justify-center gap-8">
-        <a :href="links.github" target="_blank" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 flex justify-center gap-8">
+        <a :href="links.github" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
           <Icon name="ph:github-logo-bold" class="w-6 h-6" />
           <span class="hidden sm:inline">GitHub</span>
         </a>
-        <a :href="links.linkedin" target="_blank" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">
+        <a :href="links.linkedin" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
           <Icon name="ph:linkedin-logo-bold" class="w-6 h-6" />
           <span class="hidden sm:inline">LinkedIn</span>
         </a>
