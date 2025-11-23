@@ -1,0 +1,74 @@
+<script setup lang="ts">
+import { projects } from '~/data/projects'
+
+// Show only first 4 projects on home page
+const displayedProjects = projects.slice(0, 4)
+</script>
+
+<template>
+  <UiSection id="projects" title="Featured Projects" subtitle="Some of my recent work">
+    <div class="grid md:grid-cols-2 gap-8">
+      <UiCard 
+        v-for="(project, index) in displayedProjects" 
+        :key="index"
+        hover
+        v-motion-slide-visible-once-bottom
+        :delay="index * 100"
+        as="article"
+      >
+        <div class="group relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
+          <!-- Image Placeholder or Actual Image -->
+          <div class="absolute inset-0 flex items-center justify-center text-slate-300 dark:text-slate-600 bg-slate-100 dark:bg-slate-800">
+             <Icon name="ph:image" class="w-12 h-12" aria-hidden="true" />
+          </div>
+          <!-- <NuxtImg 
+            :src="project.image" 
+            :alt="`Screenshot of ${project.title}`" 
+            class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            width="600"
+            height="338"
+          /> -->
+          
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`View live demo of ${project.title}`">
+              Live Demo
+            </UiButton>
+            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`View source code of ${project.title} on GitHub`">
+              GitHub
+            </UiButton>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+              <a v-if="project.links.demo" :href="project.links.demo" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition-colors">
+                {{ project.title }}
+              </a>
+              <span v-else>{{ project.title }}</span>
+            </h3>
+            <span class="text-xs font-medium px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+              {{ project.category }}
+            </span>
+          </div>
+          
+          <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-3">
+            {{ project.description }}
+          </p>
+          
+          <div class="flex flex-wrap gap-2" aria-label="Technologies used">
+            <span 
+              v-for="tech in project.techStack" 
+              :key="tech"
+              class="text-xs font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 px-2 py-1 rounded"
+            >
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+      </UiCard>
+    </div>
+  </UiSection>
+</template>

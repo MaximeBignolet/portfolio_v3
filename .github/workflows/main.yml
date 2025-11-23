@@ -1,0 +1,42 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to server via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          source: ".output/*"
+          target: "portfolio/"
+          strip_components: 1
+
+      - name: Restart PM2 application
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          script: |
+            mkdir -p portfolio
+            pm2 restart portfolio || pm2 start portfolio/server/index.mjs --name portfolio
+            pm2 save
