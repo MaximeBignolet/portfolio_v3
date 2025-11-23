@@ -39,4 +39,7 @@ export default defineNuxtConfig({
     exposeConfig: false,
     viewer: true,
   },
+  devServer: {
+    host: '0.0.0.0',
+  }
 })
