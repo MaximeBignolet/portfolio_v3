@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.HOST_PASSWORD }}
           source: ".output/*"
-          target: "portfolio/"
+          target: "/var/www/maximedev/"
           strip_components: 1
 
       - name: Restart PM2 application
@@ -38,5 +38,5 @@ jobs:
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
             mkdir -p portfolio
-            pm2 restart portfolio || pm2 start portfolio/server/index.mjs --name portfolio
+            pm2 restart maximedev || pm2 start /var/www/maximedev/server/index.mjs --name maximedev -- --port 3000
             pm2 save
