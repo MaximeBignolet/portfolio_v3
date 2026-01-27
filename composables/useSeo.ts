@@ -38,6 +38,9 @@ export const useSeo = (options: SeoOptions = {}) => {
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:image', content: image },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: title },
     { property: 'og:url', content: url },
     { property: 'og:type', content: type },
     { property: 'og:site_name', content: siteName },
@@ -54,6 +57,10 @@ export const useSeo = (options: SeoOptions = {}) => {
     { name: 'theme-color', content: '#3b82f6' },
     { name: 'apple-mobile-web-app-capable', content: 'yes' },
     { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+    { name: 'geo.region', content: 'FR-17' },
+    { name: 'geo.placename', content: 'La Rochelle' },
+    { name: 'application-name', content: siteName },
+    { name: 'referrer', content: 'no-referrer-when-downgrade' },
   ]
   
   // Links

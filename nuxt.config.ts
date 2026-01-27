@@ -43,7 +43,8 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/favicon.png' },
         { rel: 'manifest', href: '/manifest.json' },
         { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'Maxime Bignolet RSS Feed', href: '/rss.xml' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
