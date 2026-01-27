@@ -23,24 +23,42 @@ export const projects: Project[] = [
     category: 'Side Project'
   },
   {
-    title: 'Kasa - Real Estate Platform',
-    description: 'A modern real estate rental application built with React.js. Features include dynamic routing with React Router, a responsive layout using Sass, and a clean, user-centric interface. Demonstrates proficiency in component-based architecture and state management.',
-    techStack: ['React.js', 'Sass', 'React Router', 'JavaScript'],
-    image: '/images/kasa.png', 
+    title: 'Dupont Plomberie - Artisan Website',
+    description: 'A professional website for a plumbing and heating services company in La Rochelle. Features a modern, responsive design with service showcases, project galleries, and contact forms. Built with a focus on conversion optimization and user experience.',
+    techStack: ['Web Development', 'Responsive Design', 'SEO'],
+    image: '/images/artisan.png', 
     links: {
-      demo: 'https://kasa-eta.vercel.app/',
-      github: 'https://github.com/MaximeBignolet/Kasa'
+      demo: 'https://artisan.maximedev.fr/'
+    },
+    category: 'Professional'
+  },
+  {
+    title: 'Claire Martin Coaching',
+    description: 'A professional coaching website showcasing services for professional and personal development. Features include service presentations, testimonials, and contact forms. Designed with a focus on trust-building and client engagement.',
+    techStack: ['Web Development', 'Responsive Design', 'UX/UI'],
+    image: '/images/coach.png', 
+    links: {
+      demo: 'https://coach.maximedev.fr/'
+    },
+    category: 'Professional'
+  },
+  {
+    title: 'I Wish There Was',
+    description: 'A web application project featuring innovative features and modern design. Built with cutting-edge technologies to deliver an exceptional user experience.',
+    techStack: ['Web Development', 'Modern Stack'],
+    image: '/images/i-wish-there-was.png', 
+    links: {
+      demo: 'https://i-wish-there-was.com/'
     },
     category: 'Side Project'
   },
   {
-    title: 'Movie Discovery App',
-    description: 'An interactive movie discovery application consuming the TMDB API. Users can browse popular movies, search for titles, and view detailed metadata. Built with Vue.js to demonstrate API integration and asynchronous data handling.',
-    techStack: ['Vue.js', 'REST API', 'CSS3', 'JavaScript'],
-    image: '/images/movie_app.png', 
+    title: 'Landlify - Real Estate Management',
+    description: 'A comprehensive platform for managing real estate properties. Features include property management, document organization, and dashboard analytics. Designed to simplify property management for landlords and property owners.',
+    techStack: ['Web Development', 'Dashboard', 'Data Management'],
+    image: '/images/landlify.png', 
     links: {
-      demo: 'https://movie-app-beryl-phi.vercel.app/',
-      github: 'https://github.com/MaximeBignolet/Movie-App'
+      demo: 'https://landlify.vercel.app/'
     },
     category: 'Side Project'
   },

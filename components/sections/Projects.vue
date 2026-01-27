@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { projects } from '~/data/projects'
 
-// Show only first 4 projects on home page
-const displayedProjects = projects.slice(0, 4)
+// Show all projects on home page
+const displayedProjects = projects
 </script>
 
 <template>
