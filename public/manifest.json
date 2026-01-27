@@ -1,0 +1,26 @@
+{
+  "name": "Maxime Bignolet - Frontend Developer",
+  "short_name": "Maxime Bignolet",
+  "description": "Portfolio of Maxime Bignolet, Frontend Developer specialized in Nuxt.js and TypeScript",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "web"],
+  "lang": "en"
+}

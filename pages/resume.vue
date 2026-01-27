@@ -5,11 +5,15 @@ import { personalInfo, links } from '~/data/links'
 
 import { generateBreadcrumbSchema } from '~/utils/schema'
 
-useHead({
+const seo = useSeo({
   title: 'Resume | Maxime Bignolet',
-  meta: [
-    { name: 'description', content: 'Professional resume of Maxime Bignolet.' }
-  ],
+  description: `Professional resume and CV of ${personalInfo.name}, ${personalInfo.title}. View work experience, skills, and education.`,
+  url: 'https://maximedev.fr/resume',
+  type: 'profile'
+})
+
+useHead({
+  ...seo,
   script: [
     {
       type: 'application/ld+json',

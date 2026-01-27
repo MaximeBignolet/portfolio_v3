@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { generateWebsiteSchema } from '~/utils/schema'
+import { personalInfo } from '~/data/links'
+
+const seo = useSeo({
+  title: `${personalInfo.name} | ${personalInfo.title}`,
+  description: personalInfo.shortBio,
+  image: 'https://maximedev.fr/images/me.pdp.png',
+  url: 'https://maximedev.fr',
+  type: 'website'
+})
 
 useHead({
-  title: 'Maxime Bignolet | Front-end Developer',
-  meta: [
-    { name: 'description', content: 'Front-end Developer specialized in Nuxt.js and TypeScript. Building performant and maintainable interfaces.' }
-  ],
+  ...seo,
   script: [
     {
       type: 'application/ld+json',
