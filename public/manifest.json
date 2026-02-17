@@ -1,7 +1,7 @@
 {
-  "name": "Maxime Bignolet - Frontend Developer",
+  "name": "Maxime Bignolet - Développeur Frontend",
   "short_name": "Maxime Bignolet",
-  "description": "Portfolio of Maxime Bignolet, Frontend Developer specialized in Nuxt.js and TypeScript",
+  "description": "Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -22,5 +22,5 @@
     }
   ],
   "categories": ["portfolio", "developer", "web"],
-  "lang": "en"
+  "lang": "fr"
 }

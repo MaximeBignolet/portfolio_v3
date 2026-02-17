@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: 'en'
+        lang: 'fr'
       },
       titleTemplate: '%s | Maxime Bignolet',
       meta: [
@@ -31,12 +31,10 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-title', content: 'Maxime Bignolet' },
         { name: 'theme-color', content: '#3b82f6' },
         { name: 'msapplication-TileColor', content: '#3b82f6' },
-        { property: 'og:site_name', content: 'Maxime Bignolet - Frontend Developer' },
+        { property: 'og:site_name', content: 'Maxime Bignolet - Développeur Frontend' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:locale', content: 'en_US' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@MaximeBignolet' },
-        { name: 'twitter:creator', content: '@MaximeBignolet' }
+        { property: 'og:locale', content: 'fr_FR' },
+        { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -44,7 +42,6 @@ export default defineNuxtConfig({
         { rel: 'manifest', href: '/manifest.json' },
         { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'alternate', type: 'application/rss+xml', title: 'Maxime Bignolet RSS Feed', href: '/rss.xml' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
@@ -81,30 +78,18 @@ export default defineNuxtConfig({
   // Sitemap configuration
   site: {
     url: 'https://maximedev.fr',
-    name: 'Maxime Bignolet - Frontend Developer',
-    description: 'Portfolio of Maxime Bignolet, Frontend Developer specialized in Nuxt.js and TypeScript',
+    name: 'Maxime Bignolet - Développeur Frontend',
+    description: 'Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript',
     image: 'https://maximedev.fr/images/me.pdp.png',
-    twitter: '@max_devfront',
     github: 'https://github.com/MaximeBignolet',
     linkedin: 'https://www.linkedin.com/in/maxime-bignolet/',
     email: 'portfolio.form.contact@gmail.com',
-    rss: {
-      filename: 'rss.xml',
-      path: '/rss.xml',
-      format: 'rss2',
-      limit: 20,
-      ttl: 60,
-    },
   },
   sitemap: {
-    urls: async () => {
-      const { projects } = await import('./data/projects')
-      return [
-        '/',
-        '/resume',
-        ...projects.map((project, index) => `/projects/${index}`)
-      ]
-    }
+    urls: [
+      { loc: '/', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1.0 },
+      { loc: '/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 }
+    ]
   },
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
@@ -141,9 +126,26 @@ export default defineNuxtConfig({
           'Cache-Control': 'public, max-age=3600, must-revalidate' 
         }
       },
-      '/**': { 
-        headers: { 
-          'Cache-Control': 'public, max-age=31536000, immutable' 
+      '/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=3600, must-revalidate',
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'X-XSS-Protection': '1; mode=block',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+          'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
+        }
+      },
+      '/_nuxt/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'X-XSS-Protection': '1; mode=block',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+          'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
         }
       }
     }

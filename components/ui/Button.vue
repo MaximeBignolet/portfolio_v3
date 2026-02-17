@@ -17,7 +17,7 @@ const variantClasses = {
 const sizeClasses = {
   sm: 'px-3 py-1.5 text-sm',
   md: 'px-5 py-2.5 text-base',
-  lg: 'px-8 py-3.5 text-lg'
+  lg: 'px-6 sm:px-8 py-3 sm:py-3.5 text-base sm:text-lg'
 }
 </script>
 
@@ -25,7 +25,7 @@ const sizeClasses = {
   <NuxtLink
     v-if="to"
     :to="to"
-    class="inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 active:scale-95"
+    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
     :class="[
       variantClasses[variant || 'primary'],
       sizeClasses[size || 'md'],
@@ -39,7 +39,7 @@ const sizeClasses = {
     :href="href"
     target="_blank"
     rel="noopener noreferrer"
-    class="inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 active:scale-95"
+    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
     :class="[
       variantClasses[variant || 'primary'],
       sizeClasses[size || 'md'],
@@ -50,7 +50,7 @@ const sizeClasses = {
   </a>
   <button
     v-else
-    class="inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 active:scale-95"
+    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
     :class="[
       variantClasses[variant || 'primary'],
       sizeClasses[size || 'md'],

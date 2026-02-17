@@ -19,6 +19,7 @@ export const generatePersonSchema = () => {
     sameAs: [
       links.github,
       links.linkedin,
+      links.malt,
       ...(links.twitter ? [links.twitter] : [])
     ].filter(Boolean),
     worksFor: {
@@ -39,21 +40,13 @@ export const generateWebsiteSchema = () => {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': 'https://maximedev.fr/#website',
-    name: 'Maxime Bignolet - Frontend Developer',
+    name: 'Maxime Bignolet - Développeur Frontend',
     url: 'https://maximedev.fr',
     description: personalInfo.shortBio,
     publisher: {
       '@id': 'https://maximedev.fr/#person'
     },
-    inLanguage: 'en-US',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://maximedev.fr/?q={search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    }
+    inLanguage: 'fr-FR'
   }
 }
 
@@ -84,7 +77,7 @@ export const generateProjectSchema = (project: any) => {
       '@id': 'https://maximedev.fr/#person'
     },
     license: 'https://opensource.org/licenses/MIT',
-    dateCreated: new Date().toISOString()
+    dateCreated: project.dateCreated
   }
 }
 

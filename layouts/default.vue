@@ -34,11 +34,12 @@ watch(y, (newY) => {
 })
 
 const navigation = [
-  { name: 'About', href: '/#about' },
-  { name: 'Skills', href: '/#skills' },
-  { name: 'Experience', href: '/#experience' },
-  { name: 'Projects', href: '/#projects' },
+  { name: 'À propos', href: '/#about' },
+  { name: 'Compétences', href: '/#skills' },
+  { name: 'Expérience', href: '/#experience' },
+  { name: 'Projets', href: '/#projects' },
   { name: 'Contact', href: '/#contact' },
+  { name: 'CV', href: '/resume' },
 ]
 </script>
 
@@ -48,7 +49,7 @@ const navigation = [
     <header
       class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       :class="[
-        isScrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'
+        isScrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-4 md:py-6'
       ]"
     >
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -69,7 +70,7 @@ const navigation = [
           
           <button
             class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
-            aria-label="Toggle theme"
+            aria-label="Basculer le thème"
             @click="toggleTheme"
           >
             <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
@@ -101,14 +102,14 @@ const navigation = [
       <!-- Mobile Nav -->
       <div
         v-show="isMobileMenuOpen"
-        class="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 p-4 shadow-lg"
+        class="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-100 dark:border-slate-800 p-4 shadow-lg max-h-[70vh] overflow-y-auto"
       >
-        <nav class="flex flex-col gap-4">
+        <nav class="flex flex-col gap-2">
           <NuxtLink
             v-for="item in navigation"
             :key="item.name"
             :to="item.href"
-            class="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2"
+            class="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-3 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
             @click="isMobileMenuOpen = false"
           >
             {{ item.name }}
@@ -118,7 +119,7 @@ const navigation = [
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 
@@ -128,19 +129,22 @@ const navigation = [
         <div class="text-center md:text-left">
           <p class="font-bold text-lg mb-2">Maxime Bignolet</p>
           <p class="text-slate-500 dark:text-slate-400 text-sm">
-            © {{ new Date().getFullYear() }} All rights reserved.
+            © {{ new Date().getFullYear() }} Tous droits réservés.
           </p>
         </div>
         
         <div class="flex items-center gap-6">
-          <a href="https://github.com/MaximeBignolet" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:github-logo-bold" class="w-6 h-6" />
+          <a href="https://github.com/MaximeBignolet" target="_blank" rel="noopener" aria-label="GitHub" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Icon name="ph:github-logo-bold" class="w-6 h-6" aria-hidden="true" />
           </a>
-          <a href="https://www.linkedin.com/in/maxime-bignolet/" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:linkedin-logo-bold" class="w-6 h-6" />
+          <a href="https://www.linkedin.com/in/maxime-bignolet/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Icon name="ph:linkedin-logo-bold" class="w-6 h-6" aria-hidden="true" />
           </a>
-          <a href="mailto:portfolio.form.contact@gmail.com" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:envelope-simple-bold" class="w-6 h-6" />
+          <a href="https://www.malt.fr/profile/maximebignoletnuxtfrontend" target="_blank" rel="noopener" aria-label="Malt" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Icon name="ph:briefcase-bold" class="w-6 h-6" aria-hidden="true" />
+          </a>
+          <a href="mailto:portfolio.form.contact@gmail.com" aria-label="Email" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Icon name="ph:envelope-simple-bold" class="w-6 h-6" aria-hidden="true" />
           </a>
         </div>
       </div>

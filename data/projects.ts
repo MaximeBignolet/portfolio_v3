@@ -7,59 +7,65 @@ export interface Project {
     demo?: string
     github?: string
   }
-  category: 'Professional' | 'Open-source' | 'Side Project'
+  category: 'Professionnel' | 'Open source' | 'Projet perso'
+  dateCreated: string
 }
 
 export const projects: Project[] = [
   {
     title: 'SaaS Landing Page Template',
-    description: 'A high-performance, conversion-optimized landing page template built with Nuxt 3 and TailwindCSS. Designed for SaaS companies, it features a modular component architecture, SEO-friendly structure, and smooth animations using Swiper.js. Fully typed with TypeScript for maintainability.',
+    description: 'Template de landing page performant et optimisé pour la conversion, construit avec Nuxt 3 et TailwindCSS. Conçu pour les entreprises SaaS, il propose une architecture modulaire, une structure SEO-friendly et des animations fluides avec Swiper.js. Entièrement typé en TypeScript pour faciliter la maintenabilité.',
     techStack: ['Nuxt 3', 'TypeScript', 'TailwindCSS', 'Swiper.js', 'SEO'],
     image: '/images/landing.png', 
     links: {
       demo: 'https://template-landing-saas.vercel.app/',
       github: 'https://github.com/MaximeBignolet/template-landing-saas'
     },
-    category: 'Side Project'
+    category: 'Projet perso',
+    dateCreated: '2024-01-15'
   },
   {
     title: 'Dupont Plomberie - Artisan Website',
-    description: 'A professional website for a plumbing and heating services company in La Rochelle. Features a modern, responsive design with service showcases, project galleries, and contact forms. Built with a focus on conversion optimization and user experience.',
-    techStack: ['Web Development', 'Responsive Design', 'SEO'],
+    description: 'Site vitrine professionnel pour une entreprise de plomberie et chauffage à La Rochelle. Il inclut un design moderne et responsive, une mise en avant des services, une galerie de réalisations et des formulaires de contact. Le projet a été pensé pour la conversion et l\'expérience utilisateur.',
+    techStack: ['Développement web', 'Responsive design', 'SEO'],
     image: '/images/artisan.png', 
     links: {
       demo: 'https://artisan.maximedev.fr/'
     },
-    category: 'Professional'
+    category: 'Professionnel',
+    dateCreated: '2024-03-01'
   },
   {
     title: 'Claire Martin Coaching',
-    description: 'A professional coaching website showcasing services for professional and personal development. Features include service presentations, testimonials, and contact forms. Designed with a focus on trust-building and client engagement.',
-    techStack: ['Web Development', 'Responsive Design', 'UX/UI'],
+    description: 'Site de coaching professionnel présentant des prestations de développement personnel et professionnel. Il comprend des présentations de services, des témoignages et des formulaires de contact. Le design est centré sur la confiance et l\'engagement client.',
+    techStack: ['Développement web', 'Responsive design', 'UX/UI'],
     image: '/images/coach.png', 
     links: {
       demo: 'https://coach.maximedev.fr/'
     },
-    category: 'Professional'
+    category: 'Professionnel',
+    dateCreated: '2024-05-01'
   },
   {
     title: 'I Wish There Was',
-    description: 'A web application project featuring innovative features and modern design. Built with cutting-edge technologies to deliver an exceptional user experience.',
-    techStack: ['Web Development', 'Modern Stack'],
+    description: 'Projet d\'application web avec des fonctionnalités innovantes et un design moderne. Construit avec une stack récente pour offrir une expérience utilisateur premium.',
+    techStack: ['Développement web', 'Stack moderne'],
     image: '/images/i-wish-there-was.png', 
     links: {
       demo: 'https://i-wish-there-was.com/'
     },
-    category: 'Side Project'
+    category: 'Projet perso',
+    dateCreated: '2024-06-01'
   },
   {
     title: 'Landlify - Real Estate Management',
-    description: 'A comprehensive platform for managing real estate properties. Features include property management, document organization, and dashboard analytics. Designed to simplify property management for landlords and property owners.',
-    techStack: ['Web Development', 'Dashboard', 'Data Management'],
+    description: 'Plateforme complète de gestion immobilière. Elle inclut la gestion des biens, l\'organisation documentaire et des tableaux de bord analytiques. Le produit est conçu pour simplifier le pilotage des propriétés pour les bailleurs et gestionnaires.',
+    techStack: ['Développement web', 'Dashboard', 'Gestion de données'],
     image: '/images/landlify.png', 
     links: {
       demo: 'https://landlify.vercel.app/'
     },
-    category: 'Side Project'
+    category: 'Projet perso',
+    dateCreated: '2024-08-01'
   },
 ]

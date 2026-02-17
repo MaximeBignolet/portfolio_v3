@@ -1,7 +1,7 @@
 /* TEAM */
-Developer: Maxime Bignolet
+Développeur: Maxime Bignolet
 Contact: portfolio.form.contact@gmail.com
-Location: La Rochelle, France
+Localisation: La Rochelle, France
 Website: https://maximedev.fr
 
 /* THANKS */
@@ -10,7 +10,7 @@ CSS: TailwindCSS
 Icons: Phosphor Icons
 
 /* SITE */
-Last update: 2026/01/27
+Dernière mise à jour: 2026/01/27
 Standards: HTML5, CSS3, JavaScript ES6+
 Components: Vue.js 3
-Language: TypeScript
+Langage: TypeScript

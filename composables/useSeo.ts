@@ -1,9 +1,9 @@
 import { personalInfo } from '~/data/links'
 
 const siteUrl = 'https://maximedev.fr'
-const siteName = 'Maxime Bignolet - Frontend Developer'
+const siteName = 'Maxime Bignolet - Développeur Frontend'
 const defaultImage = `${siteUrl}/images/me.pdp.png`
-const twitterHandle = '@MaximeBignolet'
+const twitterHandle = ''
 
 export interface SeoOptions {
   title?: string
@@ -44,7 +44,7 @@ export const useSeo = (options: SeoOptions = {}) => {
     { property: 'og:url', content: url },
     { property: 'og:type', content: type },
     { property: 'og:site_name', content: siteName },
-    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale', content: 'fr_FR' },
     
     // Twitter Card
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -65,8 +65,7 @@ export const useSeo = (options: SeoOptions = {}) => {
   
   // Links
   const link = [
-    { rel: 'canonical', href: canonical },
-    { rel: 'alternate', type: 'application/rss+xml', title: `${siteName} RSS`, href: `${siteUrl}/rss.xml` }
+    { rel: 'canonical', href: canonical }
   ]
   
   return {

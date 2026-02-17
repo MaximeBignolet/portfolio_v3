@@ -4,48 +4,48 @@ export interface Experience {
   dates: string
   description: string
   bullets: string[]
-  type: 'Full-time' | 'Apprenticeship' | 'Education'
+  type: 'CDI' | 'Alternance' | 'Formation'
 }
 
 export const experience: Experience[] = [
   {
-    title: 'Frontend Developer (Nuxt 3 / TypeScript)',
+    title: 'Développeur Frontend (Nuxt 3 / TypeScript)',
     company: 'Rhinos Solutions',
-    dates: '2024 | Present',
-    description: 'Full-time Frontend Developer driving the technical implementation of high-traffic web applications.',
+    dates: '2024 | Aujourd\'hui',
+    description: 'Développeur frontend en CDI, en charge de l\'implémentation technique d\'applications web à fort trafic.',
     bullets: [
-      'Architected and developed scalable Nuxt 3 applications using TypeScript and Composition API.',
-      'Implemented a robust Design System with TailwindCSS, ensuring consistency and reducing development time by 30%.',
-      'Optimized Core Web Vitals (LCP, CLS) resulting in a 90+ Lighthouse performance score.',
-      'Collaborated with backend teams to integrate complex REST APIs and ensure type safety.',
-      'Mentored junior developers on Vue.js best practices and clean code principles.'
+      'Architecture et développement d\'applications Nuxt 3 scalables avec TypeScript et Composition API.',
+      'Mise en place d\'un Design System robuste avec TailwindCSS, garantissant la cohérence et réduisant le temps de développement de 30 %.',
+      'Optimisation des Core Web Vitals (LCP, CLS) pour atteindre un score Lighthouse de 90+.',
+      'Collaboration avec les équipes backend pour intégrer des API REST complexes et garantir la sûreté des types.',
+      'Accompagnement des profils juniors sur les bonnes pratiques Vue.js et les principes de clean code.'
     ],
-    type: 'Full-time'
+    type: 'CDI'
   },
   {
-    title: 'Bachelor’s Degree - JavaScript / React.js Developer',
+    title: 'Bachelor Développeur JavaScript / React.js',
     company: 'OpenClassrooms',
     dates: '2023 | 2024',
-    description: 'Intensive apprenticeship program focusing on modern JavaScript ecosystems and SPA development.',
+    description: 'Formation intensive en alternance, orientée écosystèmes JavaScript modernes et développement de SPA.',
     bullets: [
-      'Developed dynamic Single Page Applications (SPAs) using React.js and Redux.',
-      'Implemented responsive designs and ensured cross-browser compatibility.',
-      'Mastered Agile methodologies (Scrum/Kanban) in a professional environment.',
-      'Conducted unit and integration testing to ensure application stability.'
+      'Développement de Single Page Applications (SPA) dynamiques avec React.js et Redux.',
+      'Implémentation de designs responsives et compatibilité multi-navigateurs.',
+      'Mise en pratique des méthodologies Agile (Scrum/Kanban) en contexte professionnel.',
+      'Réalisation de tests unitaires et d\'intégration pour garantir la stabilité applicative.'
     ],
-    type: 'Education'
+    type: 'Formation'
   },
   {
-    title: 'Associate Degree - Web Developer Diploma',
+    title: 'Diplôme Développeur Web',
     company: 'OpenClassrooms',
     dates: '2022 | 2023',
-    description: 'Foundational training in full-stack web development standards.',
+    description: 'Formation fondatrice aux standards du développement web full-stack.',
     bullets: [
-      'Built semantic and accessible websites using HTML5 and CSS3.',
-      'Gained proficiency in JavaScript fundamentals and DOM manipulation.',
-      'Collaborated on projects using Git and GitHub for version control.',
-      'Optimized assets and code for faster page load times.'
+      'Création de sites sémantiques et accessibles en HTML5 et CSS3.',
+      'Maîtrise des fondamentaux JavaScript et de la manipulation du DOM.',
+      'Collaboration sur des projets avec Git et GitHub pour le versioning.',
+      'Optimisation des assets et du code pour accélérer les temps de chargement.'
     ],
-    type: 'Education'
+    type: 'Formation'
   }
 ]

@@ -3,30 +3,30 @@ import { experience } from '~/data/experience'
 </script>
 
 <template>
-  <UiSection id="experience" title="Experience" subtitle="My professional career path">
-    <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12">
+  <UiSection id="experience" title="Expérience" subtitle="Mon parcours professionnel">
+    <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-2 sm:ml-3 md:ml-6 space-y-10 md:space-y-12">
       <div 
         v-for="(job, index) in experience" 
         :key="index" 
-        class="relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 pb-12 last:pb-0"
+        class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 pb-10 md:pb-12 last:pb-0"
         v-animate-on-scroll
         :style="{ transitionDelay: `${index * 100}ms` }"
       >
         <!-- Timeline Dot -->
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-4 border-primary-500"/>
+        <div class="absolute -left-[8px] top-0 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white dark:bg-slate-900 border-4 border-primary-500"/>
         
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-          <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ job.title }}</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">{{ job.title }}</h3>
           <span class="text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">
             {{ job.dates }}
           </span>
         </div>
         
-        <div class="text-lg font-medium text-slate-700 dark:text-slate-300 mb-4">
+        <div class="text-base sm:text-lg font-medium text-slate-700 dark:text-slate-300 mb-3 sm:mb-4">
           {{ job.company }}
         </div>
         
-        <p class="text-slate-600 dark:text-slate-400 mb-4">
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-4">
           {{ job.description }}
         </p>
         

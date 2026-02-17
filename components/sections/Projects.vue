@@ -6,8 +6,8 @@ const displayedProjects = projects
 </script>
 
 <template>
-  <UiSection id="projects" title="Featured Projects" subtitle="Some of my recent work">
-    <div class="grid md:grid-cols-2 gap-8">
+  <UiSection id="projects" title="Projets en avant" subtitle="Une sélection de mes réalisations récentes">
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
       <UiCard 
         v-for="(project, index) in displayedProjects" 
         :key="index"
@@ -20,7 +20,7 @@ const displayedProjects = projects
           <NuxtImg 
             v-if="project.image"
             :src="project.image" 
-            :alt="`Screenshot of ${project.title}`" 
+            :alt="`Capture d'écran de ${project.title}`" 
             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             width="600"
@@ -34,19 +34,19 @@ const displayedProjects = projects
           </div>
           
           <!-- Overlay -->
-          <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`View live demo of ${project.title}`">
-              Live Demo
+          <div class="absolute inset-0 bg-slate-900/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-center justify-center gap-4">
+            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`Voir la démo de ${project.title}`">
+              Voir la démo
             </UiButton>
-            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`View source code of ${project.title} on GitHub`">
-              GitHub
+            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`Voir le code source de ${project.title} sur GitHub`">
+              Code source
             </UiButton>
           </div>
         </div>
         
-        <div class="p-6">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+        <div class="p-4 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
               <a v-if="project.links.demo" :href="project.links.demo" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition-colors">
                 {{ project.title }}
               </a>
@@ -60,8 +60,17 @@ const displayedProjects = projects
           <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-3">
             {{ project.description }}
           </p>
+
+          <div class="flex flex-wrap gap-2 mb-4 md:hidden">
+            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`Voir la démo de ${project.title}`">
+              Voir la démo
+            </UiButton>
+            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`Voir le code source de ${project.title} sur GitHub`">
+              Code source
+            </UiButton>
+          </div>
           
-          <div class="flex flex-wrap gap-2" aria-label="Technologies used">
+          <div class="flex flex-wrap gap-2" aria-label="Technologies utilisées">
             <span 
               v-for="tech in project.techStack" 
               :key="tech"
