@@ -3,6 +3,7 @@ export const links = {
   github: 'https://github.com/MaximeBignolet',
   linkedin: 'https://www.linkedin.com/in/maxime-bignolet/',
   malt: 'https://www.malt.fr/profile/maximebignoletnuxtfrontend',
+  codeur: 'https://www.codeur.com/-maximebr2ja',
   twitter: '',
   repo: 'https://github.com/MaximeBignolet/portfolio-v2'
 }

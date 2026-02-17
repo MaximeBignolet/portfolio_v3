@@ -39,6 +39,10 @@ import { links } from '~/data/links'
           <Icon name="ph:briefcase-bold" class="w-6 h-6" />
           <span class="hidden sm:inline">Malt</span>
         </a>
+        <a :href="links.codeur" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
+          <Icon name="ph:code-bold" class="w-6 h-6" />
+          <span class="hidden sm:inline">Codeur.com</span>
+        </a>
       </div>
     </div>
   </UiSection>
