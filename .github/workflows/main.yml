@@ -27,8 +27,9 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.HOST_PASSWORD }}
           source: ".output/*"
-          target: "/var/www/maximedev/"
+          target: "/root/maximedev/"
           strip_components: 1
+          rm: true
 
       - name: Restart PM2 application
         uses: appleboy/ssh-action@v0.1.7
@@ -37,6 +38,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
-            mkdir -p maximedev
-            pm2 restart maximedev || pm2 start /var/www/maximedev/server/index.mjs --name maximedev -- --port 3000
+            mkdir -p /root/maximedev
+            pm2 restart maximedev || pm2 start /root/maximedev/server/index.mjs --name maximedev -- --port 3000
             pm2 save
