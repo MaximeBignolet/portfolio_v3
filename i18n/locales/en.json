@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume",
+    "switchLanguage": "Switch the site to French",
+    "targetLanguage": "FR",
+    "theme": "Toggle theme",
+    "menu": "Menu"
+  },
+  "layout": {
+    "copyright": "All rights reserved."
+  },
+  "hero": {
+    "available": "Available for freelance work",
+    "portfolioOf": "Portfolio of ",
+    "location": "Based in {location}",
+    "projects": "View projects",
+    "contact": "Contact me",
+    "projectsAria": "View my projects",
+    "contactAria": "Contact me"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "My path in web development",
+    "years": "Years of experience",
+    "projects": "Projects delivered"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies I use",
+    "level": "Skill level: {level} out of 5"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My professional background"
+  },
+  "projects": {
+    "title": "Featured projects",
+    "subtitle": "A selection of my recent work",
+    "imageAlt": "Screenshot of {title}",
+    "demo": "View demo",
+    "demoAria": "View the demo of {title}",
+    "source": "Source code",
+    "sourceAria": "View the source code of {title} on GitHub",
+    "technologies": "Technologies used"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's work together",
+    "intro": "I am always open to new opportunities, collaborations, or a simple conversation about web development.",
+    "email": "Send me an email",
+    "linkedin": "Contact me on LinkedIn",
+    "malt": "Hire me on Malt"
+  },
+  "resume": {
+    "print": "Print / Save as PDF",
+    "linkedin": "LinkedIn profile",
+    "github": "GitHub profile",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "french": "French",
+    "english": "English",
+    "native": "Native",
+    "professional": "Professional"
+  },
+  "seo": {
+    "siteName": "Maxime Bignolet - Frontend Developer",
+    "siteDescription": "Portfolio of Maxime Bignolet, a frontend developer specialized in Nuxt.js and TypeScript",
+    "resumeTitle": "Resume | Maxime Bignolet",
+    "resumeDescription": "Professional resume of {name}, {title}. Browse my experience, skills and education.",
+    "home": "Home",
+    "resume": "Resume"
+  }
+}

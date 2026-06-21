@@ -10,15 +10,33 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     '@nuxtjs/fontaine',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    baseUrl: 'https://maximedev.fr',
+    defaultLocale: 'fr',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: false,
+    locales: [
+      {
+        code: 'fr',
+        name: 'Français',
+        language: 'fr-FR',
+        file: 'fr.json'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        language: 'en-US',
+        file: 'en.json'
+      }
+    ]
+  },
   ssr: true,
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'fr'
-      },
       titleTemplate: '%s | Maxime Bignolet',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
@@ -31,9 +49,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-title', content: 'Maxime Bignolet' },
         { name: 'theme-color', content: '#3b82f6' },
         { name: 'msapplication-TileColor', content: '#3b82f6' },
-        { property: 'og:site_name', content: 'Maxime Bignolet - Développeur Frontend' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:locale', content: 'fr_FR' },
         { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
@@ -78,7 +94,7 @@ export default defineNuxtConfig({
   // Sitemap configuration
   site: {
     url: 'https://maximedev.fr',
-    name: 'Maxime Bignolet - Développeur Frontend',
+    name: 'Maxime Bignolet',
     description: 'Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript',
     image: 'https://maximedev.fr/images/me.pdp.png',
     github: 'https://github.com/MaximeBignolet',
@@ -88,7 +104,9 @@ export default defineNuxtConfig({
   sitemap: {
     urls: [
       { loc: '/', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1.0 },
-      { loc: '/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 }
+      { loc: '/en', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1.0 },
+      { loc: '/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 },
+      { loc: '/en/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 }
     ]
   },
   tailwindcss: {
@@ -111,7 +129,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/', '/en', '/resume', '/en/resume']
     },
     routeRules: {
       '/': { 
@@ -124,6 +142,18 @@ export default defineNuxtConfig({
         prerender: true,
         headers: { 
           'Cache-Control': 'public, max-age=3600, must-revalidate' 
+        }
+      },
+      '/en': {
+        prerender: true,
+        headers: {
+          'Cache-Control': 'public, max-age=3600, must-revalidate'
+        }
+      },
+      '/en/resume': {
+        prerender: true,
+        headers: {
+          'Cache-Control': 'public, max-age=3600, must-revalidate'
         }
       },
       '/**': {

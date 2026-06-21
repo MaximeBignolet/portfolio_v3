@@ -1,28 +1,30 @@
 <script setup lang="ts">
 import { links } from '~/data/links'
+
+const { t } = useI18n()
 </script>
 
 <template>
-  <UiSection id="contact" title="Contact" subtitle="Travaillons ensemble">
+  <UiSection id="contact" :title="t('contact.title')" :subtitle="t('contact.subtitle')">
     <div v-animate-on-scroll class="max-w-6xl mx-auto text-center">
       <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-8">
-        Je suis toujours ouvert aux nouvelles opportunités, collaborations, ou simplement a une discussion autour du développement web.
+        {{ t('contact.intro') }}
       </p>
       
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 w-full max-w-md sm:max-w-none mx-auto">
         <UiButton :href="`mailto:${links.email}`" size="lg" class="w-full sm:w-auto">
           <Icon name="ph:envelope-simple-bold" class="w-5 h-5 mr-2" />
-          M'envoyer un email
+          {{ t('contact.email') }}
         </UiButton>
         
         <UiButton :href="links.linkedin" variant="secondary" size="lg" class="w-full sm:w-auto">
           <Icon name="ph:linkedin-logo-bold" class="w-5 h-5 mr-2" />
-          Me contacter sur LinkedIn
+          {{ t('contact.linkedin') }}
         </UiButton>
 
         <UiButton :href="links.malt" variant="secondary" size="lg" class="w-full sm:w-auto">
           <Icon name="ph:briefcase-bold" class="w-5 h-5 mr-2" />
-          Me recruter sur Malt
+          {{ t('contact.malt') }}
         </UiButton>
       </div>
       

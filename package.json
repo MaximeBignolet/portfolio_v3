@@ -24,8 +24,10 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@iconify-json/ph": "^1.2.2",
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/eslint-config": "^1.10.0",
+    "@nuxtjs/i18n": "^10.4.0",
     "eslint": "^9.39.1",
     "puppeteer": "^24.36.0"
   }

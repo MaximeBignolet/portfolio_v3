@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 
 const { y } = useWindowScroll()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 const isDark = ref(false)
@@ -33,14 +36,21 @@ watch(y, (newY) => {
   isScrolled.value = newY > 50
 })
 
-const navigation = [
-  { name: 'À propos', href: '/#about' },
-  { name: 'Compétences', href: '/#skills' },
-  { name: 'Expérience', href: '/#experience' },
-  { name: 'Projets', href: '/#projects' },
-  { name: 'Contact', href: '/#contact' },
-  { name: 'CV', href: '/resume' },
-]
+function getSectionPath(hash: string): string {
+  return `${localePath('index')}${hash}`
+}
+
+const navigation = computed(() => [
+  { name: t('navigation.about'), href: getSectionPath('#about') },
+  { name: t('navigation.skills'), href: getSectionPath('#skills') },
+  { name: t('navigation.experience'), href: getSectionPath('#experience') },
+  { name: t('navigation.projects'), href: getSectionPath('#projects') },
+  { name: t('navigation.contact'), href: getSectionPath('#contact') },
+  { name: t('navigation.resume'), href: localePath('resume') },
+])
+
+const targetLocale = computed(() => locale.value === 'fr' ? 'en' : 'fr')
+const targetLocalePath = computed(() => switchLocalePath(targetLocale.value) || localePath('index'))
 </script>
 
 <template>
@@ -68,9 +78,18 @@ const navigation = [
             {{ item.name }}
           </NuxtLink>
           
+          <NuxtLink
+            :to="targetLocalePath"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium text-slate-600 dark:text-slate-400"
+            :aria-label="t('navigation.switchLanguage')"
+          >
+            <Icon name="ph:translate-bold" class="w-4 h-4" aria-hidden="true" />
+            {{ t('navigation.targetLanguage') }}
+          </NuxtLink>
+
           <button
             class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
-            aria-label="Basculer le thème"
+            :aria-label="t('navigation.theme')"
             @click="toggleTheme"
           >
             <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
@@ -80,8 +99,18 @@ const navigation = [
 
         <!-- Mobile Menu Button -->
         <div class="flex items-center gap-4 md:hidden">
+          <NuxtLink
+            :to="targetLocalePath"
+            class="inline-flex items-center gap-1.5 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium text-slate-600 dark:text-slate-400"
+            :aria-label="t('navigation.switchLanguage')"
+          >
+            <Icon name="ph:translate-bold" class="w-5 h-5" aria-hidden="true" />
+            {{ t('navigation.targetLanguage') }}
+          </NuxtLink>
+
           <button
             class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
+            :aria-label="t('navigation.theme')"
             @click="toggleTheme"
           >
             <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
@@ -90,7 +119,7 @@ const navigation = [
           
           <button
             class="p-2 -mr-2 text-slate-600 dark:text-slate-300"
-            aria-label="Menu"
+            :aria-label="t('navigation.menu')"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
           >
             <Icon v-if="isMobileMenuOpen" name="ph:x-bold" class="w-6 h-6" />
@@ -129,7 +158,7 @@ const navigation = [
         <div class="text-center md:text-left">
           <p class="font-bold text-lg mb-2">Maxime Bignolet</p>
           <p class="text-slate-500 dark:text-slate-400 text-sm">
-            © {{ new Date().getFullYear() }} Tous droits réservés.
+            © {{ new Date().getFullYear() }} {{ t('layout.copyright') }}
           </p>
         </div>
         

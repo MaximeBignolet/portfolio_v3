@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { projects } from '~/data/projects'
+import { getProjectCategoryLabel, getProjects, type ProjectCategory } from '~/data/projects'
 
 // Show all projects on home page
-const displayedProjects = projects
+const { locale, t } = useI18n()
+const displayedProjects = computed(() => getProjects(locale.value))
+
+function getCategoryLabel(category: ProjectCategory): string {
+  return getProjectCategoryLabel(category, locale.value)
+}
 </script>
 
 <template>
-  <UiSection id="projects" title="Projets en avant" subtitle="Une sélection de mes réalisations récentes">
+  <UiSection id="projects" :title="t('projects.title')" :subtitle="t('projects.subtitle')">
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
       <UiCard 
         v-for="(project, index) in displayedProjects" 
         :key="index"
-        hover
         v-animate-on-scroll
+        hover
         :style="{ transitionDelay: `${index * 100}ms` }"
         as="article"
       >
@@ -20,7 +25,7 @@ const displayedProjects = projects
           <NuxtImg 
             v-if="project.image"
             :src="project.image" 
-            :alt="`Capture d'écran de ${project.title}`" 
+            :alt="t('projects.imageAlt', { title: project.title })"
             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             width="600"
@@ -35,11 +40,11 @@ const displayedProjects = projects
           
           <!-- Overlay -->
           <div class="absolute inset-0 bg-slate-900/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-center justify-center gap-4">
-            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`Voir la démo de ${project.title}`">
-              Voir la démo
+            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="t('projects.demoAria', { title: project.title })">
+              {{ t('projects.demo') }}
             </UiButton>
-            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`Voir le code source de ${project.title} sur GitHub`">
-              Code source
+            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="t('projects.sourceAria', { title: project.title })">
+              {{ t('projects.source') }}
             </UiButton>
           </div>
         </div>
@@ -53,7 +58,7 @@ const displayedProjects = projects
               <span v-else>{{ project.title }}</span>
             </h3>
             <span class="text-xs font-medium px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-              {{ project.category }}
+              {{ getCategoryLabel(project.category) }}
             </span>
           </div>
           
@@ -62,15 +67,15 @@ const displayedProjects = projects
           </p>
 
           <div class="flex flex-wrap gap-2 mb-4 md:hidden">
-            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="`Voir la démo de ${project.title}`">
-              Voir la démo
+            <UiButton v-if="project.links.demo" :href="project.links.demo" size="sm" variant="primary" :aria-label="t('projects.demoAria', { title: project.title })">
+              {{ t('projects.demo') }}
             </UiButton>
-            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="`Voir le code source de ${project.title} sur GitHub`">
-              Code source
+            <UiButton v-if="project.links.github" :href="project.links.github" size="sm" variant="secondary" :aria-label="t('projects.sourceAria', { title: project.title })">
+              {{ t('projects.source') }}
             </UiButton>
           </div>
           
-          <div class="flex flex-wrap gap-2" aria-label="Technologies utilisées">
+          <div class="flex flex-wrap gap-2" :aria-label="t('projects.technologies')">
             <span 
               v-for="tech in project.techStack" 
               :key="tech"

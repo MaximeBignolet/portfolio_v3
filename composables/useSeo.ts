@@ -1,7 +1,6 @@
-import { personalInfo } from '~/data/links'
+import { getPersonalInfo } from '~/data/links'
 
 const siteUrl = 'https://maximedev.fr'
-const siteName = 'Maxime Bignolet - Développeur Frontend'
 const defaultImage = `${siteUrl}/images/me.pdp.png`
 const twitterHandle = ''
 
@@ -15,20 +14,39 @@ export interface SeoOptions {
   nofollow?: boolean
 }
 
-export const useSeo = (options: SeoOptions = {}) => {
+export interface SeoMetaTag {
+  name?: string
+  property?: string
+  content: string
+}
+
+export interface SeoLinkTag {
+  key?: string
+  rel: string
+  href: string
+}
+
+export interface SeoHead {
+  title: string
+  meta: SeoMetaTag[]
+  link: SeoLinkTag[]
+  script: []
+}
+
+export function useSeo(options: SeoOptions = {}): SeoHead {
   const route = useRoute()
+  const { locale, t } = useI18n()
+  const personalInfo = getPersonalInfo(locale.value)
   
   const title = options.title || `${personalInfo.name} | ${personalInfo.title}`
   const description = options.description || personalInfo.shortBio
   const image = options.image || defaultImage
   const url = options.url || `${siteUrl}${route.path}`
   const type = options.type || 'website'
-  
-  // Canonical URL
-  const canonical = url.replace(/\/$/, '') // Remove trailing slash
+  const siteName = t('seo.siteName')
   
   // Meta tags
-  const meta = [
+  const meta: SeoMetaTag[] = [
     // Basic
     { name: 'description', content: description },
     { name: 'author', content: personalInfo.name },
@@ -44,7 +62,6 @@ export const useSeo = (options: SeoOptions = {}) => {
     { property: 'og:url', content: url },
     { property: 'og:type', content: type },
     { property: 'og:site_name', content: siteName },
-    { property: 'og:locale', content: 'fr_FR' },
     
     // Twitter Card
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -63,10 +80,7 @@ export const useSeo = (options: SeoOptions = {}) => {
     { name: 'referrer', content: 'no-referrer-when-downgrade' },
   ]
   
-  // Links
-  const link = [
-    { rel: 'canonical', href: canonical }
-  ]
+  const link: SeoLinkTag[] = []
   
   return {
     title,

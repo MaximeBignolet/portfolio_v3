@@ -1,7 +1,33 @@
-import { personalInfo, links } from '~/data/links'
-import { skills } from '~/data/skills'
+import { personalInfo as defaultPersonalInfo, links, type PersonalInfo } from '~/data/links'
+import { skills as defaultSkills, type Skill } from '~/data/skills'
+import type { Project } from '~/data/projects'
 
-export const generatePersonSchema = () => {
+export interface SchemaContext {
+  personalInfo?: PersonalInfo
+  skills?: Skill[]
+  locale?: string
+}
+
+export interface BreadcrumbItem {
+  name: string
+  item: string
+}
+
+export type SchemaObject = Record<string, unknown>
+
+export function generatePersonSchema(context: SchemaContext = {}): SchemaObject {
+  const personalInfo = context.personalInfo || defaultPersonalInfo
+  const skills = context.skills || defaultSkills
+  const sameAs = [
+    links.github,
+    links.linkedin,
+    links.malt
+  ]
+
+  if (links.twitter) {
+    sameAs.push(links.twitter)
+  }
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -16,12 +42,7 @@ export const generatePersonSchema = () => {
       addressLocality: personalInfo.location.split(',')[0],
       addressCountry: 'FR'
     },
-    sameAs: [
-      links.github,
-      links.linkedin,
-      links.malt,
-      ...(links.twitter ? [links.twitter] : [])
-    ].filter(Boolean),
+    sameAs,
     worksFor: {
       '@type': 'Organization',
       name: 'Rhinos Solutions'
@@ -35,22 +56,25 @@ export const generatePersonSchema = () => {
   }
 }
 
-export const generateWebsiteSchema = () => {
+export function generateWebsiteSchema(context: SchemaContext = {}): SchemaObject {
+  const personalInfo = context.personalInfo || defaultPersonalInfo
+  const locale = context.locale === 'en' ? 'en-US' : 'fr-FR'
+
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': 'https://maximedev.fr/#website',
-    name: 'Maxime Bignolet - Développeur Frontend',
+    name: `${personalInfo.name} - ${personalInfo.title}`,
     url: 'https://maximedev.fr',
     description: personalInfo.shortBio,
     publisher: {
       '@id': 'https://maximedev.fr/#person'
     },
-    inLanguage: 'fr-FR'
+    inLanguage: locale
   }
 }
 
-export const generateBreadcrumbSchema = (items: { name: string; item: string }[]) => {
+export function generateBreadcrumbSchema(items: BreadcrumbItem[]): SchemaObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -63,8 +87,7 @@ export const generateBreadcrumbSchema = (items: { name: string; item: string }[]
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const generateProjectSchema = (project: any) => {
+export function generateProjectSchema(project: Project): SchemaObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareSourceCode',
@@ -81,7 +104,7 @@ export const generateProjectSchema = (project: any) => {
   }
 }
 
-export const generateCollectionPageSchema = (title: string, description: string) => {
+export function generateCollectionPageSchema(title: string, description: string): SchemaObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -90,7 +113,7 @@ export const generateCollectionPageSchema = (title: string, description: string)
     url: 'https://maximedev.fr/projects',
     author: {
       '@type': 'Person',
-      name: personalInfo.name
+      name: defaultPersonalInfo.name
     }
   }
 }

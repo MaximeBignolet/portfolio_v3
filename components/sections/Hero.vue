@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { personalInfo } from '~/data/links'
+import { getPersonalInfo } from '~/data/links'
+
+const { locale, t } = useI18n()
+const personalInfo = computed(() => getPersonalInfo(locale.value))
 </script>
 
 <template>
@@ -17,11 +20,11 @@ import { personalInfo } from '~/data/links'
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"/>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"/>
           </span>
-          Disponible pour des missions
+          {{ t('hero.available') }}
         </div>
 
         <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter text-slate-900 dark:text-white mb-4 sm:mb-6">
-          <span class="sr-only">Portfolio de </span>{{ personalInfo.name }}
+          <span class="sr-only">{{ t('hero.portfolioOf') }}</span>{{ personalInfo.name }}
         </h1>
         
         <h2 class="text-xl sm:text-2xl md:text-3xl font-medium text-slate-600 dark:text-slate-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-tight">
@@ -31,15 +34,15 @@ import { personalInfo } from '~/data/links'
         <p class="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
           {{ personalInfo.shortBio }}
           <br>
-          <span class="text-sm mt-2 block opacity-80">Basé à {{ personalInfo.location }}</span>
+          <span class="text-sm mt-2 block opacity-80">{{ t('hero.location', { location: personalInfo.location }) }}</span>
         </p>
 
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto">
-          <UiButton to="#projects" size="lg" class="w-full sm:w-auto" aria-label="Voir mes projets">
-            Voir les projets
+          <UiButton to="#projects" size="lg" class="w-full sm:w-auto" :aria-label="t('hero.projectsAria')">
+            {{ t('hero.projects') }}
           </UiButton>
-          <UiButton to="#contact" variant="outline" size="lg" class="w-full sm:w-auto" aria-label="Me contacter">
-            Me contacter
+          <UiButton to="#contact" variant="outline" size="lg" class="w-full sm:w-auto" :aria-label="t('hero.contactAria')">
+            {{ t('hero.contact') }}
           </UiButton>
         </div>
       </div>

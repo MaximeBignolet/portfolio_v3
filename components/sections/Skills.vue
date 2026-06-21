@@ -1,21 +1,30 @@
 <script setup lang="ts">
-import { skills } from '~/data/skills'
+import { getSkillCategoryLabel, getSkills, skillCategories, type Skill, type SkillCategory } from '~/data/skills'
 
-const categories = ['Développement Frontend', 'Outils de développement', 'Backend & Architecture'] as const
+const { locale, t } = useI18n()
+const skills = computed(() => getSkills(locale.value))
+
+function getSkillsByCategory(category: SkillCategory): Skill[] {
+  return skills.value.filter(skill => skill.category === category)
+}
+
+function getCategoryLabel(category: SkillCategory): string {
+  return getSkillCategoryLabel(category, locale.value)
+}
 </script>
 
 <template>
-  <UiSection id="skills" title="Compétences" subtitle="Technologies que j'utilise">
+  <UiSection id="skills" :title="t('skills.title')" :subtitle="t('skills.subtitle')">
     <div class="grid gap-10 md:gap-12">
-      <div v-for="category in categories" :key="category" v-animate-on-scroll>
+      <div v-for="category in skillCategories" :key="category" v-animate-on-scroll>
         <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 flex items-center gap-3">
           <span class="w-8 h-1 bg-primary-500 rounded-full" aria-hidden="true"/>
-          {{ category }}
+          {{ getCategoryLabel(category) }}
         </h3>
         
         <ul class="flex flex-wrap gap-3 sm:gap-4">
           <li
-            v-for="skill in skills.filter(s => s.category === category)"
+            v-for="skill in getSkillsByCategory(category)"
             :key="skill.name"
             class="group relative w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 px-4 py-3 rounded-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 dark:border-slate-700 hover:border-primary-500/50"
           >
@@ -26,7 +35,7 @@ const categories = ['Développement Frontend', 'Outils de développement', 'Back
             </div>
             
             <!-- Optional Level Indicator -->
-            <div v-if="skill.level" class="absolute bottom-0 left-0 h-1 bg-primary-500/20 w-full rounded-b-xl overflow-hidden" role="progressbar" :aria-valuenow="skill.level" aria-valuemin="0" aria-valuemax="5" :aria-label="`Niveau de compétence : ${skill.level} sur 5`">
+            <div v-if="skill.level" class="absolute bottom-0 left-0 h-1 bg-primary-500/20 w-full rounded-b-xl overflow-hidden" role="progressbar" :aria-valuenow="skill.level" aria-valuemin="0" aria-valuemax="5" :aria-label="t('skills.level', { level: skill.level })">
               <div class="h-full bg-primary-500 transition-all duration-500" :style="{ width: `${(skill.level / 5) * 100}%` }"/>
             </div>
           </li>

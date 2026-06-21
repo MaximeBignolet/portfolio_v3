@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { experience } from '~/data/experience'
+import { getExperience } from '~/data/experience'
+
+const { locale, t } = useI18n()
+const experience = computed(() => getExperience(locale.value))
 </script>
 
 <template>
-  <UiSection id="experience" title="Expérience" subtitle="Mon parcours professionnel">
+  <UiSection id="experience" :title="t('experience.title')" :subtitle="t('experience.subtitle')">
     <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-2 sm:ml-3 md:ml-6 space-y-10 md:space-y-12">
       <div 
         v-for="(job, index) in experience" 
         :key="index" 
-        class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 pb-10 md:pb-12 last:pb-0"
         v-animate-on-scroll
+        class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 pb-10 md:pb-12 last:pb-0"
         :style="{ transitionDelay: `${index * 100}ms` }"
       >
         <!-- Timeline Dot -->

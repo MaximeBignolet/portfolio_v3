@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { experience } from '~/data/experience'
-import { skills } from '~/data/skills'
-import { personalInfo, links } from '~/data/links'
+import { getEducation } from '~/data/education'
+import { getExperience } from '~/data/experience'
+import { getSkills } from '~/data/skills'
+import { getPersonalInfo, links } from '~/data/links'
 
 import { generateBreadcrumbSchema } from '~/utils/schema'
 
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const personalInfo = computed(() => getPersonalInfo(locale.value))
+const experience = computed(() => getExperience(locale.value))
+const skills = computed(() => getSkills(locale.value))
+const education = computed(() => getEducation(locale.value))
+const url = locale.value === 'en' ? 'https://maximedev.fr/en/resume' : 'https://maximedev.fr/resume'
+
 const seo = useSeo({
-  title: 'CV | Maxime Bignolet',
-  description: `CV professionnel de ${personalInfo.name}, ${personalInfo.title}. Consultez mon expérience, mes compétences et ma formation.`,
-  url: 'https://maximedev.fr/resume',
+  title: t('seo.resumeTitle'),
+  description: t('seo.resumeDescription', {
+    name: personalInfo.value.name,
+    title: personalInfo.value.title
+  }),
+  url,
   type: 'profile'
 })
 
@@ -19,15 +31,15 @@ useHead({
       type: 'application/ld+json',
       innerHTML: JSON.stringify([
         generateBreadcrumbSchema([
-          { name: 'Accueil', item: '/' },
-          { name: 'CV', item: '/resume' }
+          { name: t('seo.home'), item: localePath('index') },
+          { name: t('seo.resume'), item: localePath('resume') }
         ])
       ])
     }
   ]
 })
 
-const printResume = () => {
+function printResume(): void {
   window.print()
 }
 </script>
@@ -40,7 +52,7 @@ const printResume = () => {
       <div class="flex justify-stretch sm:justify-end mb-6 sm:mb-8 print:hidden">
         <UiButton variant="outline" class="w-full sm:w-auto" @click="printResume">
           <Icon name="ph:printer-bold" class="w-5 h-5 mr-2" />
-          Imprimer / Enregistrer en PDF
+          {{ t('resume.print') }}
         </UiButton>
       </div>
 
@@ -64,11 +76,11 @@ const printResume = () => {
             </a>
             <a :href="links.linkedin" target="_blank" class="flex items-center gap-2 hover:text-primary-600 transition-colors">
               <Icon name="ph:linkedin-logo-bold" class="w-4 h-4" />
-              Profil LinkedIn
+              {{ t('resume.linkedin') }}
             </a>
             <a :href="links.github" target="_blank" class="flex items-center gap-2 hover:text-primary-600 transition-colors">
               <Icon name="ph:github-logo-bold" class="w-4 h-4" />
-              Profil GitHub
+              {{ t('resume.github') }}
             </a>
             <div class="flex items-center gap-2">
               <Icon name="ph:map-pin-bold" class="w-4 h-4" />
@@ -82,7 +94,7 @@ const printResume = () => {
           <!-- Main Column -->
           <div class="md:col-span-2 space-y-8">
             <section>
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">Expérience</h3>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">{{ t('resume.experience') }}</h3>
               <div class="space-y-8">
                 <div v-for="(job, index) in experience" :key="index">
                   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-3 mb-1">
@@ -104,7 +116,7 @@ const printResume = () => {
           <!-- Sidebar -->
           <div class="space-y-8">
             <section>
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">Compétences</h3>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">{{ t('resume.skills') }}</h3>
               <div class="flex flex-wrap gap-2">
                 <span 
                   v-for="skill in skills" 
@@ -117,30 +129,25 @@ const printResume = () => {
             </section>
 
             <section>
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">Formation</h3>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">{{ t('resume.education') }}</h3>
               <div class="space-y-4">
-                 <!-- Inferred from experience or generic -->
-                 <div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Bachelor Développeur JavaScript React</h4>
-                    <div class="text-slate-500 dark:text-slate-400 text-xs">OpenClassrooms • 2023-2024</div>
-                 </div>
-                 <div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Diplôme Développeur Web</h4>
-                    <div class="text-slate-500 dark:text-slate-400 text-xs">OpenClassrooms • 2022-2023</div>
-                 </div>
+                <div v-for="educationItem in education" :key="educationItem.title">
+                  <h4 class="font-bold text-slate-900 dark:text-white text-sm">{{ educationItem.title }}</h4>
+                  <div class="text-slate-500 dark:text-slate-400 text-xs">{{ educationItem.school }} • {{ educationItem.dates }}</div>
+                </div>
               </div>
             </section>
 
             <section>
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">Langues</h3>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">{{ t('resume.languages') }}</h3>
               <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
                 <div class="flex justify-between">
-                  <span>Français</span>
-                  <span class="text-slate-400">Natif</span>
+                  <span>{{ t('resume.french') }}</span>
+                  <span class="text-slate-400">{{ t('resume.native') }}</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>Anglais</span>
-                  <span class="text-slate-400">Professionnel</span>
+                  <span>{{ t('resume.english') }}</span>
+                  <span class="text-slate-400">{{ t('resume.professional') }}</span>
                 </div>
               </div>
             </section>

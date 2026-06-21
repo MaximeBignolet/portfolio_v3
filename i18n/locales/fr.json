@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact",
+    "resume": "CV",
+    "switchLanguage": "Passer le site en anglais",
+    "targetLanguage": "EN",
+    "theme": "Basculer le thème",
+    "menu": "Menu"
+  },
+  "layout": {
+    "copyright": "Tous droits réservés."
+  },
+  "hero": {
+    "available": "Disponible pour des missions",
+    "portfolioOf": "Portfolio de ",
+    "location": "Basé à {location}",
+    "projects": "Voir les projets",
+    "contact": "Me contacter",
+    "projectsAria": "Voir mes projets",
+    "contactAria": "Me contacter"
+  },
+  "about": {
+    "title": "À propos",
+    "subtitle": "Mon parcours dans le développement web",
+    "years": "Années d'expérience",
+    "projects": "Projets réalisés"
+  },
+  "skills": {
+    "title": "Compétences",
+    "subtitle": "Technologies que j'utilise",
+    "level": "Niveau de compétence : {level} sur 5"
+  },
+  "experience": {
+    "title": "Expérience",
+    "subtitle": "Mon parcours professionnel"
+  },
+  "projects": {
+    "title": "Projets en avant",
+    "subtitle": "Une sélection de mes réalisations récentes",
+    "imageAlt": "Capture d'écran de {title}",
+    "demo": "Voir la démo",
+    "demoAria": "Voir la démo de {title}",
+    "source": "Code source",
+    "sourceAria": "Voir le code source de {title} sur GitHub",
+    "technologies": "Technologies utilisées"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Travaillons ensemble",
+    "intro": "Je suis toujours ouvert aux nouvelles opportunités, collaborations, ou simplement à une discussion autour du développement web.",
+    "email": "M'envoyer un email",
+    "linkedin": "Me contacter sur LinkedIn",
+    "malt": "Me recruter sur Malt"
+  },
+  "resume": {
+    "print": "Imprimer / Enregistrer en PDF",
+    "linkedin": "Profil LinkedIn",
+    "github": "Profil GitHub",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "education": "Formation",
+    "languages": "Langues",
+    "french": "Français",
+    "english": "Anglais",
+    "native": "Natif",
+    "professional": "Professionnel"
+  },
+  "seo": {
+    "siteName": "Maxime Bignolet - Développeur Frontend",
+    "siteDescription": "Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript",
+    "resumeTitle": "CV | Maxime Bignolet",
+    "resumeDescription": "CV professionnel de {name}, {title}. Consultez mon expérience, mes compétences et ma formation.",
+    "home": "Accueil",
+    "resume": "CV"
+  }
+}
