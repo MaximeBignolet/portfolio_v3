@@ -38,6 +38,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
-            mkdir -p /root/maximedev
-            pm2 restart maximedev || pm2 start /root/maximedev/server/index.mjs --name maximedev -- --port 3000
+            pm2 delete maximedev || true
+            pm2 start /root/maximedev/server/index.mjs --name maximedev -- --port 3000
             pm2 save
