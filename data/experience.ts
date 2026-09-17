@@ -12,10 +12,10 @@ export interface Experience {
 export const experienceByLocale = {
   fr: [
     {
-      title: 'Développeur Frontend (Nuxt 3 / TypeScript)',
-      company: 'Rhinos Solutions',
-      dates: '2024 | Aujourd\'hui',
-      description: 'Développeur frontend en CDI, en charge de l\'implémentation technique d\'applications web à fort trafic.',
+      title: 'Développeur frontend Nuxt',
+      company: 'Rhinos Solutions, agence digitale',
+      dates: '2024 → aujourd\'hui',
+      description: 'Implémentation technique d\'applications web à fort trafic pour des grands comptes. Design system Tailwind, Core Web Vitals, intégration d\'API REST et contributions côté NestJS, accompagnement des profils juniors.',
       bullets: [
         'Architecture et développement d\'applications Nuxt 3 scalables avec TypeScript et Composition API.',
         'Mise en place d\'un Design System robuste avec TailwindCSS, garantissant la cohérence et réduisant le temps de développement de 30 %.',
@@ -26,23 +26,23 @@ export const experienceByLocale = {
       type: 'CDI'
     },
     {
-      title: 'Bachelor Développeur JavaScript / React.js',
+      title: 'Bachelor développeur JavaScript / React',
       company: 'OpenClassrooms',
-      dates: '2023 | 2024',
-      description: 'Formation intensive en alternance, orientée écosystèmes JavaScript modernes et développement de SPA.',
+      dates: '2023 → 2024',
+      description: 'SPA avec React et Redux, responsive multi-navigateurs, méthodes agiles, tests unitaires et d\'intégration.',
       bullets: [
         'Développement de Single Page Applications (SPA) dynamiques avec React.js et Redux.',
         'Implémentation de designs responsives et compatibilité multi-navigateurs.',
         'Mise en pratique des méthodologies Agile (Scrum/Kanban) en contexte professionnel.',
         'Réalisation de tests unitaires et d\'intégration pour garantir la stabilité applicative.'
       ],
-      type: 'Formation'
+      type: 'Alternance'
     },
     {
-      title: 'Diplôme Développeur Web',
+      title: 'Diplôme développeur web',
       company: 'OpenClassrooms',
-      dates: '2022 | 2023',
-      description: 'Formation fondatrice aux standards du développement web full-stack.',
+      dates: '2022 → 2023',
+      description: 'Fondamentaux : HTML sémantique, CSS, JavaScript et DOM, Git, optimisation des assets.',
       bullets: [
         'Création de sites sémantiques et accessibles en HTML5 et CSS3.',
         'Maîtrise des fondamentaux JavaScript et de la manipulation du DOM.',
@@ -54,10 +54,10 @@ export const experienceByLocale = {
   ],
   en: [
     {
-      title: 'Frontend Developer (Nuxt 3 / TypeScript)',
-      company: 'Rhinos Solutions',
-      dates: '2024 | Present',
-      description: 'Full-time frontend developer responsible for the technical implementation of high-traffic web applications.',
+      title: 'Nuxt frontend developer',
+      company: 'Rhinos Solutions, digital agency',
+      dates: '2024 → today',
+      description: 'Technical implementation of high-traffic web applications for large accounts. Tailwind design system, Core Web Vitals, REST API integration and NestJS contributions, mentoring junior developers.',
       bullets: [
         'Architecture and development of scalable Nuxt 3 applications with TypeScript and the Composition API.',
         'Implementation of a robust TailwindCSS design system, improving consistency and reducing development time by 30%.',
@@ -68,23 +68,23 @@ export const experienceByLocale = {
       type: 'CDI'
     },
     {
-      title: 'Bachelor JavaScript / React.js Developer',
+      title: 'Bachelor JavaScript / React developer',
       company: 'OpenClassrooms',
-      dates: '2023 | 2024',
-      description: 'Intensive work-study program focused on modern JavaScript ecosystems and SPA development.',
+      dates: '2023 → 2024',
+      description: 'SPAs with React and Redux, cross-browser responsive work, agile methods, unit and integration tests.',
       bullets: [
         'Development of dynamic Single Page Applications with React.js and Redux.',
         'Implementation of responsive designs with cross-browser compatibility.',
         'Practical use of Agile methodologies (Scrum/Kanban) in a professional context.',
         'Creation of unit and integration tests to improve application stability.'
       ],
-      type: 'Formation'
+      type: 'Alternance'
     },
     {
-      title: 'Web Developer Diploma',
+      title: 'Web developer diploma',
       company: 'OpenClassrooms',
-      dates: '2022 | 2023',
-      description: 'Foundational training in full-stack web development standards.',
+      dates: '2022 → 2023',
+      description: 'Fundamentals: semantic HTML, CSS, JavaScript and the DOM, Git, asset optimisation.',
       bullets: [
         'Creation of semantic and accessible websites with HTML5 and CSS3.',
         'Mastery of JavaScript fundamentals and DOM manipulation.',

@@ -1,0 +1,28 @@
+# Maxime Bignolet
+
+> Développeur frontend Nuxt et Vue.js basé à La Rochelle (France). Développeur depuis 2023, en agence sur des sites à fort trafic. Disponible en CDI ou en mission freelance.
+
+- Rôle : développeur frontend (Nuxt 3 et 4, Vue 3, TypeScript, Tailwind CSS, Pinia, Vitest). À l'aise côté API avec NestJS.
+- Spécialités : performance web (Core Web Vitals), SEO technique, accessibilité, design systems.
+- Localisation : La Rochelle, Nouvelle-Aquitaine, France.
+- Langues : français (natif), anglais (professionnel).
+- Contact : portfolio.form.contact@gmail.com
+
+## Pages
+
+- [Accueil (français)](https://maximedev.fr) : présentation, projets, expertise, parcours, contact.
+- [Home (English)](https://maximedev.fr/en) : same content in English.
+- [CV](https://maximedev.fr/resume) : expérience, compétences, formation, imprimable.
+- [Resume](https://maximedev.fr/en/resume) : English version.
+
+## Profils
+
+- [LinkedIn](https://www.linkedin.com/in/maxime-bignolet/)
+- [GitHub](https://github.com/MaximeBignolet)
+- [Malt](https://www.malt.fr/profile/maximebignoletnuxtfrontend)
+
+## Projets
+
+- [Landlify](https://landlify.vercel.app/) : plateforme de gestion immobilière (Nuxt, TypeScript, Tailwind).
+- [Template landing SaaS](https://template-landing-saas.vercel.app/) : landing page modulaire Nuxt 3 et Tailwind.
+- [I Wish There Was](https://i-wish-there-was.com/) : application web de collecte de besoins produit.

@@ -1,56 +1,49 @@
 <script setup lang="ts">
-import { getPersonalInfo } from '~/data/links'
+import { getPersonalInfo, links } from '~/data/links'
 
 const { locale, t } = useI18n()
 const personalInfo = computed(() => getPersonalInfo(locale.value))
 </script>
 
 <template>
-  <section class="min-h-[100svh] flex items-center justify-center relative overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16">
-    <!-- Background Elements -->
-    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute top-16 -right-12 sm:right-10 w-72 h-72 sm:w-96 sm:h-96 bg-primary-200/20 dark:bg-primary-900/10 rounded-full blur-3xl animate-pulse will-change-transform"/>
-      <div class="absolute bottom-10 -left-16 sm:left-10 w-56 h-56 sm:w-72 sm:h-72 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl animate-pulse delay-1000 will-change-transform"/>
-    </div>
-
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div v-animate-on-scroll class="space-y-5 sm:space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 mb-3 sm:mb-4">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"/>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"/>
-          </span>
-          {{ t('hero.available') }}
-        </div>
-
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter text-slate-900 dark:text-white mb-4 sm:mb-6">
-          <span class="sr-only">{{ t('hero.portfolioOf') }}</span>{{ personalInfo.name }}
+  <section class="pb-12 pt-10 sm:pb-[72px] sm:pt-16 lg:pb-[88px] lg:pt-[104px]">
+    <div class="wrap grid gap-9 lg:grid-cols-12 lg:items-end lg:gap-20">
+      <div class="lg:col-span-7">
+        <p class="eyebrow">{{ personalInfo.eyebrow }}</p>
+        <h1 class="mb-5 mt-3.5 text-[clamp(36px,10vw,78px)] sm:mb-6 sm:mt-4 sm:text-[clamp(44px,7vw,78px)] lg:max-w-[14ch] lg:text-[clamp(56px,5.6vw,78px)]">
+          {{ personalInfo.headline }}
+          <span class="text-accent">{{ personalInfo.headlineEmphasis }}</span>
         </h1>
-        
-        <h2 class="text-xl sm:text-2xl md:text-3xl font-medium text-slate-600 dark:text-slate-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-tight">
-          {{ personalInfo.title }}
-        </h2>
-        
-        <p class="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-          {{ personalInfo.shortBio }}
-          <br>
-          <span class="text-sm mt-2 block opacity-80">{{ t('hero.location', { location: personalInfo.location }) }}</span>
+        <p class="max-w-[52ch] text-[17px] text-ink-2 sm:text-[19px] lg:text-xl">
+          {{ personalInfo.lede }}
         </p>
-
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto">
-          <UiButton to="#projects" size="lg" class="w-full sm:w-auto" :aria-label="t('hero.projectsAria')">
-            {{ t('hero.projects') }}
+        <div class="mt-6 flex flex-wrap gap-2.5 sm:mt-8 sm:gap-3">
+          <UiButton to="#projets" class="flex-[1_1_160px] sm:flex-none">
+            {{ t('hero.projectsCta') }}
           </UiButton>
-          <UiButton to="#contact" variant="outline" size="lg" class="w-full sm:w-auto" :aria-label="t('hero.contactAria')">
-            {{ t('hero.contact') }}
+          <UiButton :href="`mailto:${links.email}`" variant="ghost" class="flex-[1_1_160px] sm:flex-none">
+            {{ t('hero.emailCta') }}
           </UiButton>
         </div>
       </div>
-    </div>
-    
-    <!-- Scroll Indicator -->
-    <div class="hidden sm:block absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-400">
-      <Icon name="ph:arrow-down-bold" class="w-6 h-6" />
+
+      <div class="relative mb-9 w-full max-w-[320px] lg:col-span-5 lg:mb-0 lg:max-w-none">
+        <div class="absolute -bottom-3.5 -right-3.5 left-3.5 top-3.5 rounded bg-photo/35" aria-hidden="true" />
+        <NuxtImg
+          src="/images/avatar.png"
+          :alt="t('hero.portraitAlt', { name: personalInfo.name })"
+          class="relative aspect-square w-full rounded object-cover lg:aspect-[4/5] lg:object-[50%_30%]"
+          width="640"
+          height="800"
+          sizes="320px lg:460px"
+          format="webp"
+          fetchpriority="high"
+        />
+        <p class="absolute -bottom-3 left-0 flex translate-y-full items-center gap-2 whitespace-nowrap font-mono text-xs text-muted">
+          <span class="h-2 w-2 rounded-full bg-accent ring-4 ring-accent/20" aria-hidden="true" />
+          {{ personalInfo.availability }}
+        </p>
+      </div>
     </div>
   </section>
 </template>

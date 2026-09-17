@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { generateWebsiteSchema } from '~/utils/schema'
+import { generateProfilePageSchema, generateWebsiteSchema } from '~/utils/schema'
 import { getPersonalInfo } from '~/data/links'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const personalInfo = computed(() => getPersonalInfo(locale.value))
 const url = locale.value === 'en' ? 'https://maximedev.fr/en' : 'https://maximedev.fr'
 
 const seo = useSeo({
-  title: `${personalInfo.value.name} | ${personalInfo.value.title}`,
+  title: t('seo.homeTitle'),
   description: personalInfo.value.shortBio,
-  image: 'https://maximedev.fr/images/me.pdp.png',
+  image: locale.value === 'en' ? 'https://maximedev.fr/images/og-en.png' : 'https://maximedev.fr/images/og.png',
   url,
   type: 'website'
 })
@@ -19,10 +19,10 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(generateWebsiteSchema({
-        personalInfo: personalInfo.value,
-        locale: locale.value
-      }))
+      innerHTML: JSON.stringify([
+        generateWebsiteSchema({ personalInfo: personalInfo.value, locale: locale.value }),
+        generateProfilePageSchema({ personalInfo: personalInfo.value, locale: locale.value })
+      ])
     }
   ]
 })
@@ -31,10 +31,10 @@ useHead({
 <template>
   <div>
     <SectionsHero />
-    <SectionsAbout />
-    <SectionsSkills />
-    <SectionsExperience />
+    <SectionsProof />
     <SectionsProjects />
+    <SectionsExpertise />
+    <SectionsExperience />
     <SectionsContact />
   </div>
 </template>

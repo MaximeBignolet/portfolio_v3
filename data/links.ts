@@ -15,7 +15,16 @@ export interface PersonalInfo {
   title: string
   location: string
   shortBio: string
-  about: string
+  eyebrow: string
+  headline: string
+  headlineEmphasis: string
+  lede: string
+  availability: string
+}
+
+export interface ProofItem {
+  value: string
+  label: string
 }
 
 export const personalInfoByLocale = {
@@ -23,28 +32,45 @@ export const personalInfoByLocale = {
     name: 'Maxime Bignolet',
     title: 'Développeur Frontend Nuxt.js - TypeScript / Vue.js',
     location: 'La Rochelle, France',
-    shortBio: 'Je conçois des applications web performantes et optimisées SEO avec Nuxt 3 et l’écosystème Vue.js.',
-    about: `Je suis <strong>développeur frontend</strong>, spécialisé dans la création d'applications web performantes avec <strong>Nuxt.js</strong>, <strong>TypeScript</strong> et <strong>TailwindCSS</strong>. Basé à La Rochelle, je combine exigence technique et vision produit pour livrer des solutions scalables et optimisées pour le SEO.
-
-Actuellement <strong>Frontend Engineer</strong> en agence digitale, je conçois des interfaces complexes pour des clients majeurs (comme Daikin), avec un focus sur les <strong>Core Web Vitals</strong>, l'accessibilité et la maintenabilité du code. J'ai notamment réduit les temps de chargement de 40 % et mis en place des design systems robustes qui accélèrent la production.
-
-Ma valeur ajoutée: résoudre des enjeux business avec un code propre, type-safe et durable. Que ce soit pour optimiser les stratégies d'hydratation Nuxt ou livrer des interfaces pixel-perfect avec Tailwind, chaque ligne de code vise une meilleure expérience utilisateur et un impact mesurable.`
+    shortBio: 'Maxime Bignolet, développeur frontend Nuxt et Vue.js à La Rochelle. Sites et applications rapides, accessibles et optimisés pour le SEO, en CDI ou en mission freelance.',
+    eyebrow: 'Développeur frontend Nuxt · La Rochelle',
+    headline: 'Des interfaces Nuxt qui chargent vite',
+    headlineEmphasis: 'et vieillissent bien.',
+    lede: 'Maxime Bignolet, développeur frontend Nuxt et Vue.js à La Rochelle, développeur depuis 2023 en agence sur des sites à fort trafic. Vue 3, TypeScript, Tailwind, et une vraie attention aux Core Web Vitals, à l’accessibilité et au code que l’on relit six mois plus tard. Côté API, je parle NestJS.',
+    availability: 'Disponible pour un CDI ou une mission'
   },
   en: {
     name: 'Maxime Bignolet',
     title: 'Nuxt.js Frontend Developer - TypeScript / Vue.js',
     location: 'La Rochelle, France',
-    shortBio: 'I build fast, SEO-focused web applications with Nuxt 3 and the Vue.js ecosystem.',
-    about: `I am a <strong>frontend developer</strong> specialized in building high-performance web applications with <strong>Nuxt.js</strong>, <strong>TypeScript</strong> and <strong>TailwindCSS</strong>. Based in La Rochelle, I combine technical standards with product thinking to deliver scalable, SEO-friendly solutions.
-
-I currently work as a <strong>Frontend Engineer</strong> in a digital agency, where I build complex interfaces for major clients such as Daikin, with a focus on <strong>Core Web Vitals</strong>, accessibility and maintainable code. I have reduced load times by 40% and shipped robust design systems that speed up production.
-
-My added value: solving business problems with clean, type-safe and durable code. Whether I am optimizing Nuxt hydration strategies or delivering pixel-perfect interfaces with Tailwind, every line of code is written to improve the user experience and create measurable impact.`
+    shortBio: 'Maxime Bignolet, Nuxt and Vue.js frontend developer in La Rochelle, France. Fast, accessible, SEO-ready websites and web apps, full-time or freelance.',
+    eyebrow: 'Nuxt frontend developer · La Rochelle, France',
+    headline: 'Nuxt interfaces that load fast',
+    headlineEmphasis: 'and age well.',
+    lede: 'Maxime Bignolet, Nuxt and Vue.js frontend developer based in La Rochelle, France, developer since 2023 in an agency on high-traffic websites. Vue 3, TypeScript, Tailwind, and real care for Core Web Vitals, accessibility and code you can still read six months later. On the API side, I speak NestJS.',
+    availability: 'Open to a full-time role or a freelance mission'
   }
 } satisfies Record<LocaleCode, PersonalInfo>
+
+export const proofByLocale = {
+  fr: [
+    { value: '−40 %', label: 'de temps de chargement sur un site client à fort trafic' },
+    { value: '90+', label: 'score Lighthouse après optimisation LCP et CLS' },
+    { value: '−30 %', label: 'de temps de développement grâce à un design system Tailwind' }
+  ],
+  en: [
+    { value: '−40%', label: 'load time on a high-traffic client website' },
+    { value: '90+', label: 'Lighthouse score after LCP and CLS optimisation' },
+    { value: '−30%', label: 'development time thanks to a Tailwind design system' }
+  ]
+} satisfies Record<LocaleCode, ProofItem[]>
 
 export const personalInfo = personalInfoByLocale.fr
 
 export function getPersonalInfo(locale: string): PersonalInfo {
   return personalInfoByLocale[normalizeLocale(locale)]
+}
+
+export function getProof(locale: string): ProofItem[] {
+  return proofByLocale[normalizeLocale(locale)]
 }

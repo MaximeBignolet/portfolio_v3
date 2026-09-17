@@ -1,60 +1,64 @@
 {
   "navigation": {
-    "about": "À propos",
-    "skills": "Compétences",
-    "experience": "Expérience",
     "projects": "Projets",
+    "expertise": "Expertise",
+    "experience": "Parcours",
     "contact": "Contact",
     "resume": "CV",
     "switchLanguage": "Passer le site en anglais",
     "targetLanguage": "EN",
     "theme": "Basculer le thème",
-    "menu": "Menu"
+    "themeLight": "Clair",
+    "themeDark": "Sombre",
+    "skipToContent": "Aller au contenu",
+    "menu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "layout": {
-    "copyright": "Tous droits réservés."
+    "copyright": "Tous droits réservés.",
+    "builtWith": "Nuxt 4 · maximedev.fr"
   },
   "hero": {
-    "available": "Disponible pour des missions",
-    "portfolioOf": "Portfolio de ",
-    "location": "Basé à {location}",
-    "projects": "Voir les projets",
-    "contact": "Me contacter",
-    "projectsAria": "Voir mes projets",
-    "contactAria": "Me contacter"
+    "projectsCta": "Voir les projets",
+    "emailCta": "Écrire un mail",
+    "portraitAlt": "Portrait illustré de {name}"
   },
-  "about": {
-    "title": "À propos",
-    "subtitle": "Mon parcours dans le développement web",
-    "years": "Années d'expérience",
-    "projects": "Projets réalisés"
-  },
-  "skills": {
-    "title": "Compétences",
-    "subtitle": "Technologies que j'utilise",
-    "level": "Niveau de compétence : {level} sur 5"
-  },
-  "experience": {
-    "title": "Expérience",
-    "subtitle": "Mon parcours professionnel"
+  "proof": {
+    "label": "Résultats chiffrés"
   },
   "projects": {
-    "title": "Projets en avant",
-    "subtitle": "Une sélection de mes réalisations récentes",
-    "imageAlt": "Capture d'écran de {title}",
-    "demo": "Voir la démo",
-    "demoAria": "Voir la démo de {title}",
-    "source": "Code source",
-    "sourceAria": "Voir le code source de {title} sur GitHub",
-    "technologies": "Technologies utilisées"
+    "eyebrow": "Projets",
+    "title": "Un projet en détail, quatre en bref.",
+    "intro": "Des projets personnels et des sites de démonstration : chacun sert à tester une idée sur Nuxt, la performance, le SEO ou la gestion de données. Le travail client, lui, reste en agence.",
+    "open": "Ouvrir {title}",
+    "idea": "Idée",
+    "done": "Fait",
+    "learned": "Appris",
+    "imageAlt": "Page d'accueil de {title}",
+    "otherList": "Autres projets"
+  },
+  "expertise": {
+    "eyebrow": "Expertise",
+    "title": "Trois choses que je fais bien.",
+    "intro": "Pas de liste de dix-neuf logos. Ce que je maîtrise vraiment, et ce que ça change pour un projet.",
+    "daily": "Au quotidien",
+    "also": "Aussi"
+  },
+  "experience": {
+    "eyebrow": "Parcours",
+    "title": "De la formation au CDI en agence.",
+    "kind": {
+      "CDI": "CDI",
+      "Alternance": "Alternance",
+      "Formation": "Formation"
+    }
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Travaillons ensemble",
-    "intro": "Je suis toujours ouvert aux nouvelles opportunités, collaborations, ou simplement à une discussion autour du développement web.",
-    "email": "M'envoyer un email",
-    "linkedin": "Me contacter sur LinkedIn",
-    "malt": "Me recruter sur Malt"
+    "eyebrow": "Contact",
+    "title": "Un poste, une mission, ou juste un avis sur un front Nuxt ?",
+    "intro": "Je réponds vite, en français ou en anglais. Basé à La Rochelle.",
+    "malt": "freelance",
+    "cv": "1 page, imprimable"
   },
   "resume": {
     "print": "Imprimer / Enregistrer en PDF",
@@ -72,9 +76,10 @@
   "seo": {
     "siteName": "Maxime Bignolet - Développeur Frontend",
     "siteDescription": "Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript",
-    "resumeTitle": "CV | Maxime Bignolet",
+    "resumeTitle": "CV",
     "resumeDescription": "CV professionnel de {name}, {title}. Consultez mon expérience, mes compétences et ma formation.",
     "home": "Accueil",
-    "resume": "CV"
+    "resume": "CV",
+    "homeTitle": "Développeur frontend Nuxt et Vue.js à La Rochelle"
   }
 }

@@ -2,50 +2,45 @@
 import { links } from '~/data/links'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
+
+const external = computed(() => [
+  { label: 'LinkedIn', meta: 'maxime-bignolet', href: links.linkedin },
+  { label: 'GitHub', meta: 'MaximeBignolet', href: links.github },
+  { label: 'Malt', meta: t('contact.malt'), href: links.malt }
+])
+
+const rowClass = 'flex items-center justify-between gap-3 border-b border-bg/20 py-3 text-base transition-colors hover:text-accent'
 </script>
 
 <template>
-  <UiSection id="contact" :title="t('contact.title')" :subtitle="t('contact.subtitle')">
-    <div v-animate-on-scroll class="max-w-6xl mx-auto text-center">
-      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-8">
-        {{ t('contact.intro') }}
-      </p>
-      
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 w-full max-w-md sm:max-w-none mx-auto">
-        <UiButton :href="`mailto:${links.email}`" size="lg" class="w-full sm:w-auto">
-          <Icon name="ph:envelope-simple-bold" class="w-5 h-5 mr-2" />
-          {{ t('contact.email') }}
-        </UiButton>
-        
-        <UiButton :href="links.linkedin" variant="secondary" size="lg" class="w-full sm:w-auto">
-          <Icon name="ph:linkedin-logo-bold" class="w-5 h-5 mr-2" />
-          {{ t('contact.linkedin') }}
-        </UiButton>
-
-        <UiButton :href="links.malt" variant="secondary" size="lg" class="w-full sm:w-auto">
-          <Icon name="ph:briefcase-bold" class="w-5 h-5 mr-2" />
-          {{ t('contact.malt') }}
-        </UiButton>
-      </div>
-      
-      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 flex justify-center gap-6 sm:gap-8">
-        <a :href="links.github" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
-          <Icon name="ph:github-logo-bold" class="w-6 h-6" />
-          <span class="hidden sm:inline">GitHub</span>
-        </a>
-        <a :href="links.linkedin" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
-          <Icon name="ph:linkedin-logo-bold" class="w-6 h-6" />
-          <span class="hidden sm:inline">LinkedIn</span>
-        </a>
-        <a :href="links.malt" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
-          <Icon name="ph:briefcase-bold" class="w-6 h-6" />
-          <span class="hidden sm:inline">Malt</span>
-        </a>
-        <a :href="links.codeur" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
-          <Icon name="ph:code-bold" class="w-6 h-6" />
-          <span class="hidden sm:inline">Codeur.com</span>
+  <section id="contact" class="scroll-mt-20 bg-ink text-bg">
+    <div class="wrap grid gap-9 py-14 sm:py-20 lg:grid-cols-12 lg:items-end lg:gap-12 lg:py-28">
+      <div class="lg:col-span-7">
+        <p class="eyebrow text-bg/60">{{ t('contact.eyebrow') }}</p>
+        <h2 class="mt-2.5 text-[clamp(30px,8vw,60px)] lg:text-[clamp(36px,5vw,60px)]">{{ t('contact.title') }}</h2>
+        <p class="mt-3.5 max-w-[46ch] text-bg/80">{{ t('contact.intro') }}</p>
+        <a
+          :href="`mailto:${links.email}`"
+          class="mt-[22px] inline-block border-b-2 border-accent pb-0.5 font-display text-[clamp(18px,5.2vw,30px)] font-semibold [overflow-wrap:anywhere] transition-colors hover:text-accent"
+        >
+          {{ links.email }}
         </a>
       </div>
+      <ul class="grid gap-2 lg:col-span-5 lg:gap-2.5">
+        <li v-for="item in external" :key="item.label">
+          <a :href="item.href" target="_blank" rel="noopener noreferrer" :class="rowClass">
+            <span>{{ item.label }}</span>
+            <span class="text-right font-mono text-[12.5px] opacity-70">{{ item.meta }}</span>
+          </a>
+        </li>
+        <li>
+          <NuxtLink :to="localePath('resume')" :class="rowClass">
+            <span>{{ t('navigation.resume') }}</span>
+            <span class="text-right font-mono text-[12.5px] opacity-70">{{ t('contact.cv') }}</span>
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
-  </UiSection>
+  </section>
 </template>

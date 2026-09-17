@@ -1,23 +1,28 @@
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   to?: string
   href?: string
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
-  size?: 'sm' | 'md' | 'lg'
+  variant?: 'primary' | 'ghost'
+  size?: 'sm' | 'md'
   block?: boolean
-}>()
+}>(), {
+  to: undefined,
+  href: undefined,
+  variant: 'primary',
+  size: 'md',
+  block: false
+})
+
+const base = 'inline-flex items-center justify-center gap-2 rounded font-medium border transition-colors duration-150 active:translate-y-px'
 
 const variantClasses = {
-  primary: 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-500/30',
-  secondary: 'bg-slate-800 text-white hover:bg-slate-700 dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-white',
-  outline: 'border-2 border-slate-200 hover:border-primary-500 hover:text-primary-600 dark:border-slate-700 dark:hover:border-primary-400 dark:hover:text-primary-400',
-  ghost: 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+  primary: 'bg-ink text-bg border-transparent hover:bg-accent hover:text-accent-ink',
+  ghost: 'bg-transparent text-ink border-line-strong hover:border-ink'
 }
 
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-5 py-2.5 text-base',
-  lg: 'px-6 sm:px-8 py-3 sm:py-3.5 text-base sm:text-lg'
+  sm: 'px-3.5 py-2 text-sm',
+  md: 'px-[18px] py-[13px] text-[15px]'
 }
 </script>
 
@@ -25,37 +30,23 @@ const sizeClasses = {
   <NuxtLink
     v-if="to"
     :to="to"
-    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
-    :class="[
-      variantClasses[variant || 'primary'],
-      sizeClasses[size || 'md'],
-      block ? 'w-full' : ''
-    ]"
+    :class="[base, variantClasses[variant], sizeClasses[size], block ? 'w-full' : '']"
   >
     <slot />
   </NuxtLink>
   <a
     v-else-if="href"
     :href="href"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
-    :class="[
-      variantClasses[variant || 'primary'],
-      sizeClasses[size || 'md'],
-      block ? 'w-full' : ''
-    ]"
+    :target="href.startsWith('mailto:') ? undefined : '_blank'"
+    :rel="href.startsWith('mailto:') ? undefined : 'noopener noreferrer'"
+    :class="[base, variantClasses[variant], sizeClasses[size], block ? 'w-full' : '']"
   >
     <slot />
   </a>
   <button
     v-else
-    class="inline-flex items-center justify-center text-center rounded-full font-medium transition-all duration-300 active:scale-95"
-    :class="[
-      variantClasses[variant || 'primary'],
-      sizeClasses[size || 'md'],
-      block ? 'w-full' : ''
-    ]"
+    type="button"
+    :class="[base, variantClasses[variant], sizeClasses[size], block ? 'w-full' : '']"
   >
     <slot />
   </button>

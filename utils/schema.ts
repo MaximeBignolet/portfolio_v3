@@ -35,7 +35,7 @@ export function generatePersonSchema(context: SchemaContext = {}): SchemaObject 
     name: personalInfo.name,
     jobTitle: personalInfo.title,
     url: 'https://maximedev.fr',
-    image: 'https://maximedev.fr/images/me.pdp.png',
+    image: 'https://maximedev.fr/images/avatar.png',
     email: links.email,
     address: {
       '@type': 'PostalAddress',
@@ -47,6 +47,26 @@ export function generatePersonSchema(context: SchemaContext = {}): SchemaObject 
       '@type': 'Organization',
       name: 'Rhinos Solutions'
     },
+    workLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'La Rochelle',
+        postalCode: '17000',
+        addressRegion: 'Nouvelle-Aquitaine',
+        addressCountry: 'FR'
+      }
+    },
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: context.locale === 'en' ? 'Frontend developer' : 'Développeur frontend',
+      occupationLocation: {
+        '@type': 'City',
+        name: 'La Rochelle'
+      },
+      skills: skills.map(skill => skill.name).join(', ')
+    },
+    knowsLanguage: ['fr', 'en'],
     description: personalInfo.shortBio,
     knowsAbout: skills.map(skill => skill.name),
     alumniOf: {
@@ -71,6 +91,24 @@ export function generateWebsiteSchema(context: SchemaContext = {}): SchemaObject
       '@id': 'https://maximedev.fr/#person'
     },
     inLanguage: locale
+  }
+}
+
+export function generateProfilePageSchema(context: SchemaContext = {}): SchemaObject {
+  const personalInfo = context.personalInfo || defaultPersonalInfo
+  const url = context.locale === 'en' ? 'https://maximedev.fr/en' : 'https://maximedev.fr'
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${url}#profile`,
+    url,
+    name: personalInfo.name,
+    description: personalInfo.shortBio,
+    inLanguage: context.locale === 'en' ? 'en-US' : 'fr-FR',
+    mainEntity: {
+      '@id': 'https://maximedev.fr/#person'
+    }
   }
 }
 

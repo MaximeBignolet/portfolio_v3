@@ -1,25 +1,32 @@
 <script setup lang="ts">
-defineProps<{
-  id?: string
-  title?: string
-  subtitle?: string
-  dark?: boolean
-}>()
+withDefaults(defineProps<{
+  id: string
+  eyebrow: string
+  title: string
+  intro?: string
+  tight?: boolean
+}>(), {
+  intro: undefined,
+  tight: false
+})
 </script>
 
 <template>
   <section
     :id="id"
-    class="py-16 md:py-24 lg:py-32 relative overflow-hidden"
-    :class="dark ? 'bg-slate-900 text-white' : 'bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white'"
+    class="scroll-mt-20"
+    :class="tight ? 'pb-14 sm:pb-20 lg:pb-28' : 'py-14 sm:py-20 lg:py-28'"
   >
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div v-if="title" v-animate-on-scroll class="mb-10 md:mb-16 lg:mb-20 max-w-3xl">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight">
-          {{ title }}
-        </h2>
-        <p v-if="subtitle" class="text-base md:text-lg text-slate-600 dark:text-slate-400">
-          {{ subtitle }}
+    <div class="wrap">
+      <div class="mb-8 grid gap-3 md:mb-14 md:grid-cols-12 md:gap-x-16 md:gap-y-6">
+        <div class="md:col-span-4">
+          <p class="eyebrow">{{ eyebrow }}</p>
+          <h2 class="mt-2 text-[clamp(28px,7.5vw,44px)] md:text-[clamp(32px,3.6vw,44px)]">
+            {{ title }}
+          </h2>
+        </div>
+        <p v-if="intro" class="max-w-[58ch] text-ink-2 md:col-span-8 md:pt-2 md:text-[17.5px]">
+          {{ intro }}
         </p>
       </div>
       <slot />

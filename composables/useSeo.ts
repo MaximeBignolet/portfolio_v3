@@ -1,7 +1,7 @@
 import { getPersonalInfo } from '~/data/links'
 
 const siteUrl = 'https://maximedev.fr'
-const defaultImage = `${siteUrl}/images/me.pdp.png`
+const defaultImage = `${siteUrl}/images/og.png`
 const twitterHandle = ''
 
 export interface SeoOptions {
@@ -14,19 +14,19 @@ export interface SeoOptions {
   nofollow?: boolean
 }
 
-export interface SeoMetaTag {
+export type SeoMetaTag = {
   name?: string
   property?: string
   content: string
 }
 
-export interface SeoLinkTag {
+export type SeoLinkTag = {
   key?: string
   rel: string
   href: string
 }
 
-export interface SeoHead {
+export type SeoHead = {
   title: string
   meta: SeoMetaTag[]
   link: SeoLinkTag[]
@@ -62,6 +62,8 @@ export function useSeo(options: SeoOptions = {}): SeoHead {
     { property: 'og:url', content: url },
     { property: 'og:type', content: type },
     { property: 'og:site_name', content: siteName },
+    { property: 'og:locale', content: locale.value === 'en' ? 'en_US' : 'fr_FR' },
+    { property: 'og:locale:alternate', content: locale.value === 'en' ? 'fr_FR' : 'en_US' },
     
     // Twitter Card
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -71,7 +73,7 @@ export function useSeo(options: SeoOptions = {}): SeoHead {
     ...(twitterHandle ? [{ name: 'twitter:creator', content: twitterHandle }] : []),
     
     // Additional
-    { name: 'theme-color', content: '#3b82f6' },
+    { name: 'theme-color', content: '#101c26' },
     { name: 'apple-mobile-web-app-capable', content: 'yes' },
     { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
     { name: 'geo.region', content: 'FR-17' },

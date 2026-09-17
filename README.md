@@ -7,7 +7,6 @@ A modern, premium, front-only portfolio built with Nuxt 3, TypeScript, and Tailw
 - ⚡️ **Nuxt 3** - The Hybrid Vue Framework
 - 🎨 **TailwindCSS** - Utility-first CSS framework
 - 🌗 **Dark Mode** - System preference with toggle and persistence
-- 🎭 **Animations** - Smooth transitions and scroll animations using `@vueuse/motion`
 - 📱 **Responsive** - Mobile-first design
 - 🧩 **Components** - Modular and reusable UI components
 - 📄 **Static Data** - Easy to update content via `data/*.ts` files
@@ -35,19 +34,19 @@ A modern, premium, front-only portfolio built with Nuxt 3, TypeScript, and Tailw
 All content is managed in the `data/` directory:
 - `data/projects.ts`: Add or edit projects
 - `data/experience.ts`: Update work experience
-- `data/skills.ts`: Manage skills and proficiency levels
+- `data/skills.ts`: Expertise groups and the stack line
 - `data/links.ts`: Social links and personal info
 
 ### Images
 Place your images in the `public/images/` directory.
-- Avatar: `public/images/avatar.jpg`
-- Projects: `public/images/projects/*.jpg`
+- Avatar: `public/images/avatar.png`
+- Projects: `public/images/*.png`
 
 Update the paths in the data files accordingly.
 
 ### Colors & Fonts
-- Colors are defined in `tailwind.config.ts`
-- Fonts are configured in `assets/css/main.scss` and `tailwind.config.ts` (Default: Inter)
+- Color tokens are CSS variables in `assets/css/main.css` (light and dark), exposed to Tailwind in `tailwind.config.ts`
+- Fonts are self-hosted in `public/fonts` (Bricolage Grotesque, IBM Plex Sans, IBM Plex Mono, SIL Open Font License) and declared in `assets/css/main.css`
 
 ## Deployment
 

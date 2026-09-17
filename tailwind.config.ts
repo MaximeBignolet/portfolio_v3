@@ -13,22 +13,40 @@ export default <Config>{
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', '"Avenir Next"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        sans: ['"IBM Plex Sans"', '"Helvetica Neue"', 'Arial', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', '"SF Mono"', 'Menlo', 'Consolas', 'monospace']
       },
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-        }
+        bg: 'rgb(var(--c-bg) / <alpha-value>)',
+        surface: {
+          DEFAULT: 'rgb(var(--c-surface) / <alpha-value>)',
+          2: 'rgb(var(--c-surface-2) / <alpha-value>)'
+        },
+        ink: {
+          DEFAULT: 'rgb(var(--c-ink) / <alpha-value>)',
+          2: 'rgb(var(--c-ink-2) / <alpha-value>)'
+        },
+        muted: 'rgb(var(--c-muted) / <alpha-value>)',
+        line: {
+          DEFAULT: 'rgb(var(--c-line) / <alpha-value>)',
+          strong: 'rgb(var(--c-line-strong) / <alpha-value>)'
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--c-accent) / <alpha-value>)',
+          ink: 'rgb(var(--c-accent-ink) / <alpha-value>)'
+        },
+        teal: {
+          DEFAULT: 'rgb(var(--c-teal) / <alpha-value>)',
+          soft: 'rgb(var(--c-teal-soft) / <alpha-value>)'
+        },
+        photo: 'rgb(var(--c-photo) / <alpha-value>)'
+      },
+      maxWidth: {
+        page: '1120px'
+      },
+      borderRadius: {
+        DEFAULT: '6px'
       }
     }
   },

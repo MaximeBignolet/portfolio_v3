@@ -47,17 +47,24 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'apple-mobile-web-app-title', content: 'Maxime Bignolet' },
-        { name: 'theme-color', content: '#3b82f6' },
-        { name: 'msapplication-TileColor', content: '#3b82f6' },
+        { name: 'theme-color', content: '#101c26' },
+        { name: 'msapplication-TileColor', content: '#101c26' },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-        { rel: 'apple-touch-icon', href: '/favicon.png' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/favicon.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/manifest.json' },
-        { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/bricolage-grotesque-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/ibm-plex-sans-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }
+      ],
+      script: [
+        {
+          innerHTML: "(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})()",
+          tagPosition: 'head'
+        }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
@@ -96,18 +103,10 @@ export default defineNuxtConfig({
     url: 'https://maximedev.fr',
     name: 'Maxime Bignolet',
     description: 'Portfolio de Maxime Bignolet, développeur frontend spécialisé en Nuxt.js et TypeScript',
-    image: 'https://maximedev.fr/images/me.pdp.png',
+    image: 'https://maximedev.fr/images/avatar.png',
     github: 'https://github.com/MaximeBignolet',
     linkedin: 'https://www.linkedin.com/in/maxime-bignolet/',
     email: 'portfolio.form.contact@gmail.com',
-  },
-  sitemap: {
-    urls: [
-      { loc: '/', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1.0 },
-      { loc: '/en', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1.0 },
-      { loc: '/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 },
-      { loc: '/en/resume', lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 }
-    ]
   },
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
@@ -129,7 +128,8 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/en', '/resume', '/en/resume']
+      routes: ['/', '/en', '/resume', '/en/resume'],
+      ignore: ['/en/sitemap.xml']
     },
     routeRules: {
       '/': { 

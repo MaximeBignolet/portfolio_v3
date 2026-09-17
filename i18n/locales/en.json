@@ -1,60 +1,64 @@
 {
   "navigation": {
-    "about": "About",
-    "skills": "Skills",
-    "experience": "Experience",
     "projects": "Projects",
+    "expertise": "Expertise",
+    "experience": "Background",
     "contact": "Contact",
     "resume": "Resume",
     "switchLanguage": "Switch the site to French",
     "targetLanguage": "FR",
     "theme": "Toggle theme",
-    "menu": "Menu"
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "skipToContent": "Skip to content",
+    "menu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "layout": {
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "builtWith": "Nuxt 4 · maximedev.fr"
   },
   "hero": {
-    "available": "Available for freelance work",
-    "portfolioOf": "Portfolio of ",
-    "location": "Based in {location}",
-    "projects": "View projects",
-    "contact": "Contact me",
-    "projectsAria": "View my projects",
-    "contactAria": "Contact me"
+    "projectsCta": "View projects",
+    "emailCta": "Send an email",
+    "portraitAlt": "Illustrated portrait of {name}"
   },
-  "about": {
-    "title": "About",
-    "subtitle": "My path in web development",
-    "years": "Years of experience",
-    "projects": "Projects delivered"
-  },
-  "skills": {
-    "title": "Skills",
-    "subtitle": "Technologies I use",
-    "level": "Skill level: {level} out of 5"
-  },
-  "experience": {
-    "title": "Experience",
-    "subtitle": "My professional background"
+  "proof": {
+    "label": "Key figures"
   },
   "projects": {
-    "title": "Featured projects",
-    "subtitle": "A selection of my recent work",
-    "imageAlt": "Screenshot of {title}",
-    "demo": "View demo",
-    "demoAria": "View the demo of {title}",
-    "source": "Source code",
-    "sourceAria": "View the source code of {title} on GitHub",
-    "technologies": "Technologies used"
+    "eyebrow": "Projects",
+    "title": "One project in depth, four in brief.",
+    "intro": "Side projects and demo websites: each one tests an idea about Nuxt, performance, SEO or data management. Client work stays at the agency.",
+    "open": "Open {title}",
+    "idea": "Idea",
+    "done": "Built",
+    "learned": "Learned",
+    "imageAlt": "Home page of {title}",
+    "otherList": "Other projects"
+  },
+  "expertise": {
+    "eyebrow": "Expertise",
+    "title": "Three things I do well.",
+    "intro": "No list of nineteen logos. What I actually master, and what it changes for a project.",
+    "daily": "Daily",
+    "also": "Also"
+  },
+  "experience": {
+    "eyebrow": "Background",
+    "title": "From training to a full-time agency role.",
+    "kind": {
+      "CDI": "Full-time",
+      "Alternance": "Work-study",
+      "Formation": "Training"
+    }
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Let's work together",
-    "intro": "I am always open to new opportunities, collaborations, or a simple conversation about web development.",
-    "email": "Send me an email",
-    "linkedin": "Contact me on LinkedIn",
-    "malt": "Hire me on Malt"
+    "eyebrow": "Contact",
+    "title": "A role, a mission, or just an opinion on a Nuxt front end?",
+    "intro": "I reply quickly, in French or English. Based in La Rochelle, France.",
+    "malt": "freelance",
+    "cv": "1 page, printable"
   },
   "resume": {
     "print": "Print / Save as PDF",
@@ -72,9 +76,10 @@
   "seo": {
     "siteName": "Maxime Bignolet - Frontend Developer",
     "siteDescription": "Portfolio of Maxime Bignolet, a frontend developer specialized in Nuxt.js and TypeScript",
-    "resumeTitle": "Resume | Maxime Bignolet",
+    "resumeTitle": "Resume",
     "resumeDescription": "Professional resume of {name}, {title}. Browse my experience, skills and education.",
     "home": "Home",
-    "resume": "Resume"
+    "resume": "Resume",
+    "homeTitle": "Nuxt and Vue.js frontend developer in La Rochelle"
   }
 }

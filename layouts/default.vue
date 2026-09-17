@@ -1,181 +1,142 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, watch } from 'vue'
-import { useWindowScroll } from '@vueuse/core'
-
-const { y } = useWindowScroll()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const isScrolled = ref(false)
-const isMobileMenuOpen = ref(false)
+const route = useRoute()
 const isDark = ref(false)
+const isMenuOpen = ref(false)
 
-// Initialize dark mode from localStorage or system preference
 onMounted(() => {
-  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    isDark.value = true
-    document.documentElement.classList.add('dark')
-  } else {
-    isDark.value = false
-    document.documentElement.classList.remove('dark')
-  }
+  isDark.value = document.documentElement.classList.contains('dark')
 })
 
-const toggleTheme = () => {
+function toggleTheme(): void {
   isDark.value = !isDark.value
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    localStorage.theme = 'dark'
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.theme = 'light'
+  document.documentElement.classList.toggle('dark', isDark.value)
+  try {
+    localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+  } catch {
+    // storage unavailable: the theme still applies for this page view
   }
 }
 
-watch(y, (newY) => {
-  isScrolled.value = newY > 50
-})
+function closeMenu(): void {
+  isMenuOpen.value = false
+}
 
-function getSectionPath(hash: string): string {
+function onKeydown(event: KeyboardEvent): void {
+  if (event.key === 'Escape') closeMenu()
+}
+
+watch(() => route.fullPath, closeMenu)
+watch(isMenuOpen, (open) => {
+  if (open) document.addEventListener('keydown', onKeydown)
+  else document.removeEventListener('keydown', onKeydown)
+})
+onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
+
+function sectionPath(hash: string): string {
   return `${localePath('index')}${hash}`
 }
 
 const navigation = computed(() => [
-  { name: t('navigation.about'), href: getSectionPath('#about') },
-  { name: t('navigation.skills'), href: getSectionPath('#skills') },
-  { name: t('navigation.experience'), href: getSectionPath('#experience') },
-  { name: t('navigation.projects'), href: getSectionPath('#projects') },
-  { name: t('navigation.contact'), href: getSectionPath('#contact') },
-  { name: t('navigation.resume'), href: localePath('resume') },
+  { name: t('navigation.projects'), href: sectionPath('#projets') },
+  { name: t('navigation.expertise'), href: sectionPath('#expertise') },
+  { name: t('navigation.experience'), href: sectionPath('#parcours') },
+  { name: t('navigation.contact'), href: sectionPath('#contact') },
+  { name: t('navigation.resume'), href: localePath('resume') }
 ])
 
-const targetLocale = computed(() => locale.value === 'fr' ? 'en' : 'fr')
+const targetLocale = computed(() => (locale.value === 'fr' ? 'en' : 'fr'))
 const targetLocalePath = computed(() => switchLocalePath(targetLocale.value) || localePath('index'))
+
+const chipClass = 'rounded-full border border-line-strong px-2.5 py-1.5 font-mono text-xs text-ink transition-colors hover:border-ink'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
-    <!-- Header -->
-    <header
-      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      :class="[
-        isScrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-4 md:py-6'
-      ]"
+  <div class="flex min-h-screen flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
     >
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <NuxtLink to="/" class="text-xl font-bold tracking-tighter hover:text-primary-500 transition-colors">
-          MB
+      {{ t('navigation.skipToContent') }}
+    </a>
+
+    <header class="sticky top-0 z-20 border-b border-line bg-bg/90 backdrop-blur-md">
+      <div class="wrap flex h-14 items-center justify-between gap-4 md:h-16">
+        <NuxtLink :to="localePath('index')" class="flex items-center gap-3 whitespace-nowrap font-display text-[17px] font-bold" @click="closeMenu">
+          <UiLogo class="h-[22px] w-auto" />
+          Maxime Bignolet
         </NuxtLink>
 
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-8">
-          <NuxtLink
-            v-for="item in navigation"
-            :key="item.name"
-            :to="item.href"
-            class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-          >
-            {{ item.name }}
-          </NuxtLink>
-          
-          <NuxtLink
-            :to="targetLocalePath"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium text-slate-600 dark:text-slate-400"
-            :aria-label="t('navigation.switchLanguage')"
-          >
-            <Icon name="ph:translate-bold" class="w-4 h-4" aria-hidden="true" />
-            {{ t('navigation.targetLanguage') }}
-          </NuxtLink>
-
-          <button
-            class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
-            :aria-label="t('navigation.theme')"
-            @click="toggleTheme"
-          >
-            <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
-            <Icon v-else name="ph:moon-bold" class="w-5 h-5" />
-          </button>
+        <nav class="hidden md:block" aria-label="Principale">
+          <ul class="flex gap-7">
+            <li v-for="item in navigation" :key="item.href">
+              <NuxtLink :to="item.href" class="text-[15px] text-ink-2 transition-colors hover:text-ink">
+                {{ item.name }}
+              </NuxtLink>
+            </li>
+          </ul>
         </nav>
 
-        <!-- Mobile Menu Button -->
-        <div class="flex items-center gap-4 md:hidden">
-          <NuxtLink
-            :to="targetLocalePath"
-            class="inline-flex items-center gap-1.5 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium text-slate-600 dark:text-slate-400"
-            :aria-label="t('navigation.switchLanguage')"
-          >
-            <Icon name="ph:translate-bold" class="w-5 h-5" aria-hidden="true" />
+        <div class="hidden items-center gap-2 md:flex">
+          <NuxtLink :to="targetLocalePath" :class="chipClass" :aria-label="t('navigation.switchLanguage')">
             {{ t('navigation.targetLanguage') }}
           </NuxtLink>
-
-          <button
-            class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"
-            :aria-label="t('navigation.theme')"
-            @click="toggleTheme"
-          >
-            <Icon v-if="isDark" name="ph:sun-bold" class="w-5 h-5" />
-            <Icon v-else name="ph:moon-bold" class="w-5 h-5" />
-          </button>
-          
-          <button
-            class="p-2 -mr-2 text-slate-600 dark:text-slate-300"
-            :aria-label="t('navigation.menu')"
-            @click="isMobileMenuOpen = !isMobileMenuOpen"
-          >
-            <Icon v-if="isMobileMenuOpen" name="ph:x-bold" class="w-6 h-6" />
-            <Icon v-else name="ph:list-bold" class="w-6 h-6" />
+          <button type="button" :class="chipClass" :aria-label="t('navigation.theme')" @click="toggleTheme">
+            {{ isDark ? t('navigation.themeLight') : t('navigation.themeDark') }}
           </button>
         </div>
+
+        <button
+          type="button"
+          class="-mr-2 flex h-10 w-10 items-center justify-center rounded text-ink md:hidden"
+          :aria-label="isMenuOpen ? t('navigation.closeMenu') : t('navigation.menu')"
+          :aria-expanded="isMenuOpen"
+          aria-controls="mobile-nav"
+          @click="isMenuOpen = !isMenuOpen"
+        >
+          <Icon :name="isMenuOpen ? 'ph:x-bold' : 'ph:list-bold'" class="h-6 w-6" aria-hidden="true" />
+        </button>
       </div>
 
-      <!-- Mobile Nav -->
-      <div
-        v-show="isMobileMenuOpen"
-        class="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-100 dark:border-slate-800 p-4 shadow-lg max-h-[70vh] overflow-y-auto"
+      <nav
+        id="mobile-nav"
+        class="border-t border-line bg-bg md:hidden"
+        :class="isMenuOpen ? 'block' : 'hidden'"
+        aria-label="Principale"
       >
-        <nav class="flex flex-col gap-2">
-          <NuxtLink
-            v-for="item in navigation"
-            :key="item.name"
-            :to="item.href"
-            class="text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-3 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
-            @click="isMobileMenuOpen = false"
-          >
-            {{ item.name }}
+        <ul class="wrap grid pt-2">
+          <li v-for="item in navigation" :key="item.href">
+            <NuxtLink
+              :to="item.href"
+              class="flex items-center justify-between border-b border-line py-3.5 font-display text-lg font-semibold text-ink"
+              @click="closeMenu"
+            >
+              {{ item.name }}
+              <Icon name="ph:arrow-right-bold" class="h-4 w-4 text-muted" aria-hidden="true" />
+            </NuxtLink>
+          </li>
+        </ul>
+        <div class="wrap flex items-center gap-2 py-4">
+          <NuxtLink :to="targetLocalePath" :class="chipClass" :aria-label="t('navigation.switchLanguage')" @click="closeMenu">
+            {{ t('navigation.targetLanguage') }}
           </NuxtLink>
-        </nav>
-      </div>
+          <button type="button" :class="chipClass" :aria-label="t('navigation.theme')" @click="toggleTheme">
+            {{ isDark ? t('navigation.themeLight') : t('navigation.themeDark') }}
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content" class="flex-grow">
       <slot />
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 py-12">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-          <p class="font-bold text-lg mb-2">Maxime Bignolet</p>
-          <p class="text-slate-500 dark:text-slate-400 text-sm">
-            © {{ new Date().getFullYear() }} {{ t('layout.copyright') }}
-          </p>
-        </div>
-        
-        <div class="flex items-center gap-6">
-          <a href="https://github.com/MaximeBignolet" target="_blank" rel="noopener" aria-label="GitHub" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:github-logo-bold" class="w-6 h-6" aria-hidden="true" />
-          </a>
-          <a href="https://www.linkedin.com/in/maxime-bignolet/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:linkedin-logo-bold" class="w-6 h-6" aria-hidden="true" />
-          </a>
-          <a href="https://www.malt.fr/profile/maximebignoletnuxtfrontend" target="_blank" rel="noopener" aria-label="Malt" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:briefcase-bold" class="w-6 h-6" aria-hidden="true" />
-          </a>
-          <a href="mailto:portfolio.form.contact@gmail.com" aria-label="Email" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <Icon name="ph:envelope-simple-bold" class="w-6 h-6" aria-hidden="true" />
-          </a>
-        </div>
+    <footer>
+      <div class="wrap flex flex-wrap justify-between gap-x-4 gap-y-2 py-5 font-mono text-xs text-muted">
+        <span>© {{ new Date().getFullYear() }} Maxime Bignolet · {{ t('layout.copyright') }}</span>
+        <span>{{ t('layout.builtWith') }}</span>
       </div>
     </footer>
   </div>

@@ -1,6 +1,13 @@
 import { normalizeLocale, type LocaleCode } from './i18n'
 
-export type ProjectCategory = 'professional' | 'openSource' | 'personal'
+export type ProjectCategory = 'personal' | 'demo'
+
+export interface CaseStudy {
+  eyebrow: string
+  idea: string
+  done: string
+  learned: string
+}
 
 export interface Project {
   title: string
@@ -12,135 +19,146 @@ export interface Project {
     github?: string
   }
   category: ProjectCategory
+  tag: string
   dateCreated: string
+  caseStudy?: CaseStudy
 }
-
-export const projectCategoryLabels = {
-  fr: {
-    professional: 'Professionnel',
-    openSource: 'Open source',
-    personal: 'Projet perso'
-  },
-  en: {
-    professional: 'Professional',
-    openSource: 'Open source',
-    personal: 'Personal project'
-  }
-} satisfies Record<LocaleCode, Record<ProjectCategory, string>>
 
 export const projectsByLocale = {
   fr: [
     {
-      title: 'SaaS Landing Page Template',
-      description: 'Template de landing page performant et optimisé pour la conversion, construit avec Nuxt 3 et TailwindCSS. Conçu pour les entreprises SaaS, il propose une architecture modulaire, une structure SEO-friendly et des animations fluides avec Swiper.js. Entièrement typé en TypeScript pour faciliter la maintenabilité.',
+      title: 'Landlify',
+      description: 'Plateforme de gestion immobilière : biens, documents, tableaux de bord pour bailleurs.',
+      techStack: ['Nuxt', 'TypeScript', 'Tailwind', 'Dashboard', 'Gestion de données'],
+      image: '/images/landlify.png',
+      links: {
+        demo: 'https://landlify.vercel.app/'
+      },
+      category: 'personal',
+      tag: 'Projet perso',
+      dateCreated: '2024-08-01',
+      caseStudy: {
+        eyebrow: 'Gestion immobilière',
+        idea: 'Un outil simple pour qu’un bailleur suive ses biens, ses documents et ses chiffres au même endroit.',
+        done: 'Tableaux de bord, formulaires métier, organisation documentaire, le tout typé de bout en bout.',
+        learned: 'Structurer une vraie app Nuxt avec beaucoup d’état, pas seulement une landing.'
+      }
+    },
+    {
+      title: 'Template landing SaaS',
+      description: 'Landing modulaire Nuxt 3 et Tailwind, typée de bout en bout, pensée pour la conversion.',
       techStack: ['Nuxt 3', 'TypeScript', 'TailwindCSS', 'Swiper.js', 'SEO'],
       image: '/images/landing.png',
       links: {
         demo: 'https://template-landing-saas.vercel.app/'
       },
       category: 'personal',
+      tag: 'Nuxt 3',
       dateCreated: '2024-01-15'
     },
     {
-      title: 'Dupont Plomberie - Artisan Website',
-      description: 'Site vitrine professionnel pour une entreprise de plomberie et chauffage à La Rochelle. Il inclut un design moderne et responsive, une mise en avant des services, une galerie de réalisations et des formulaires de contact. Le projet a été pensé pour la conversion et l\'expérience utilisateur.',
-      techStack: ['Développement web', 'Responsive design', 'SEO'],
-      image: '/images/artisan.png',
-      links: {
-        demo: 'https://artisan.maximedev.fr/'
-      },
-      category: 'professional',
-      dateCreated: '2024-03-01'
-    },
-    {
-      title: 'Claire Martin Coaching',
-      description: 'Site de coaching professionnel présentant des prestations de développement personnel et professionnel. Il comprend des présentations de services, des témoignages et des formulaires de contact. Le design est centré sur la confiance et l\'engagement client.',
-      techStack: ['Développement web', 'Responsive design', 'UX/UI'],
-      image: '/images/coach.png',
-      links: {
-        demo: 'https://coach.maximedev.fr/'
-      },
-      category: 'professional',
-      dateCreated: '2024-05-01'
-    },
-    {
       title: 'I Wish There Was',
-      description: 'Projet d\'application web avec des fonctionnalités innovantes et un design moderne. Construit avec une stack récente pour offrir une expérience utilisateur premium.',
+      description: 'Application web de collecte de besoins produit, stack récente et interface sobre.',
       techStack: ['Développement web', 'Stack moderne'],
       image: '/images/i-wish-there-was.png',
       links: {
         demo: 'https://i-wish-there-was.com/'
       },
       category: 'personal',
+      tag: 'Perso',
       dateCreated: '2024-06-01'
     },
     {
-      title: 'Landlify - Real Estate Management',
-      description: 'Plateforme complète de gestion immobilière. Elle inclut la gestion des biens, l\'organisation documentaire et des tableaux de bord analytiques. Le produit est conçu pour simplifier le pilotage des propriétés pour les bailleurs et gestionnaires.',
-      techStack: ['Développement web', 'Dashboard', 'Gestion de données'],
+      title: 'Dupont Plomberie',
+      description: 'Site vitrine d’artisan : structure orientée conversion, galerie, devis, SEO local.',
+      techStack: ['Développement web', 'Responsive design', 'SEO'],
+      image: '/images/artisan.png',
+      links: {
+        demo: 'https://artisan.maximedev.fr/'
+      },
+      category: 'demo',
+      tag: 'Démo vitrine',
+      dateCreated: '2024-03-01'
+    },
+    {
+      title: 'Claire Martin Coaching',
+      description: 'Site de coaching centré sur la confiance : prestations, témoignages, prise de contact.',
+      techStack: ['Développement web', 'Responsive design', 'UX/UI'],
+      image: '/images/coach.png',
+      links: {
+        demo: 'https://coach.maximedev.fr/'
+      },
+      category: 'demo',
+      tag: 'Démo vitrine',
+      dateCreated: '2024-05-01'
+    }
+  ],
+  en: [
+    {
+      title: 'Landlify',
+      description: 'Real estate management platform: properties, documents and dashboards for landlords.',
+      techStack: ['Nuxt', 'TypeScript', 'Tailwind', 'Dashboard', 'Data management'],
       image: '/images/landlify.png',
       links: {
         demo: 'https://landlify.vercel.app/'
       },
       category: 'personal',
-      dateCreated: '2024-08-01'
-    }
-  ],
-  en: [
+      tag: 'Side project',
+      dateCreated: '2024-08-01',
+      caseStudy: {
+        eyebrow: 'Real estate management',
+        idea: 'A simple tool for a landlord to track properties, documents and figures in one place.',
+        done: 'Dashboards, business forms, document organisation, all typed end to end.',
+        learned: 'Structuring a real Nuxt app with a lot of state, not just a landing page.'
+      }
+    },
     {
-      title: 'SaaS Landing Page Template',
-      description: 'A high-performance landing page template optimized for conversion, built with Nuxt 3 and TailwindCSS. Designed for SaaS companies, it provides a modular architecture, an SEO-friendly structure and smooth Swiper.js animations. Fully typed with TypeScript to keep maintenance straightforward.',
+      title: 'SaaS landing template',
+      description: 'Modular Nuxt 3 and Tailwind landing page, typed end to end, built for conversion.',
       techStack: ['Nuxt 3', 'TypeScript', 'TailwindCSS', 'Swiper.js', 'SEO'],
       image: '/images/landing.png',
       links: {
         demo: 'https://template-landing-saas.vercel.app/'
       },
       category: 'personal',
+      tag: 'Nuxt 3',
       dateCreated: '2024-01-15'
     },
     {
-      title: 'Dupont Plomberie - Artisan Website',
-      description: 'A professional showcase website for a plumbing and heating company in La Rochelle. It includes a modern responsive design, service highlights, a portfolio gallery and contact forms. The project was designed around conversion and user experience.',
-      techStack: ['Web development', 'Responsive design', 'SEO'],
-      image: '/images/artisan.png',
-      links: {
-        demo: 'https://artisan.maximedev.fr/'
-      },
-      category: 'professional',
-      dateCreated: '2024-03-01'
-    },
-    {
-      title: 'Claire Martin Coaching',
-      description: 'A professional coaching website presenting personal and career development services. It includes service pages, testimonials and contact forms. The design focuses on trust and client engagement.',
-      techStack: ['Web development', 'Responsive design', 'UX/UI'],
-      image: '/images/coach.png',
-      links: {
-        demo: 'https://coach.maximedev.fr/'
-      },
-      category: 'professional',
-      dateCreated: '2024-05-01'
-    },
-    {
       title: 'I Wish There Was',
-      description: 'A web application project with innovative features and a modern interface. Built with a recent stack to deliver a premium user experience.',
+      description: 'Web app that collects product needs, recent stack and a sober interface.',
       techStack: ['Web development', 'Modern stack'],
       image: '/images/i-wish-there-was.png',
       links: {
         demo: 'https://i-wish-there-was.com/'
       },
       category: 'personal',
+      tag: 'Side project',
       dateCreated: '2024-06-01'
     },
     {
-      title: 'Landlify - Real Estate Management',
-      description: 'A complete real estate management platform. It includes property management, document organization and analytics dashboards. The product is designed to simplify property operations for landlords and managers.',
-      techStack: ['Web development', 'Dashboard', 'Data management'],
-      image: '/images/landlify.png',
+      title: 'Dupont Plomberie',
+      description: 'Showcase website for a tradesman: conversion-oriented structure, gallery, quotes, local SEO.',
+      techStack: ['Web development', 'Responsive design', 'SEO'],
+      image: '/images/artisan.png',
       links: {
-        demo: 'https://landlify.vercel.app/'
+        demo: 'https://artisan.maximedev.fr/'
       },
-      category: 'personal',
-      dateCreated: '2024-08-01'
+      category: 'demo',
+      tag: 'Showcase demo',
+      dateCreated: '2024-03-01'
+    },
+    {
+      title: 'Claire Martin Coaching',
+      description: 'Coaching website built around trust: services, testimonials, contact.',
+      techStack: ['Web development', 'Responsive design', 'UX/UI'],
+      image: '/images/coach.png',
+      links: {
+        demo: 'https://coach.maximedev.fr/'
+      },
+      category: 'demo',
+      tag: 'Showcase demo',
+      dateCreated: '2024-05-01'
     }
   ]
 } satisfies Record<LocaleCode, Project[]>
@@ -151,6 +169,10 @@ export function getProjects(locale: string): Project[] {
   return projectsByLocale[normalizeLocale(locale)]
 }
 
-export function getProjectCategoryLabel(category: ProjectCategory, locale: string): string {
-  return projectCategoryLabels[normalizeLocale(locale)][category]
+export function getFeaturedProject(locale: string): Project | undefined {
+  return getProjects(locale).find(project => project.caseStudy)
+}
+
+export function getOtherProjects(locale: string): Project[] {
+  return getProjects(locale).filter(project => !project.caseStudy)
 }
